@@ -1,0 +1,16 @@
+Linux raspberrypi 5.4.83-v7+ #1379 SMP Mon Dec 14 13:08:57 GMT 2020 armv7l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon Jan 11 15:27:41 2021
+
+SSH is enabled and the default password for the 'pi' user has not been changed.
+This is a security risk - please login as the 'pi' user and type 'passwd' to set a new password.
+
+]0;pi@raspberrypi: ~[01;32mpi@raspberrypi[00m:[01;34m~ $[00m ^C
+]0;pi@raspberrypi: ~[01;32mpi@raspberrypi[00m:[01;34m~ $[00m ^C
+]0;pi@raspberrypi: ~[01;32mpi@raspberrypi[00m:[01;34m~ $[00m ^Dssh -l pi 169.254.148.11

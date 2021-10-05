@@ -1,0 +1,282 @@
+#!/bin/bash
+#******************************************************************
+##
+## Copyright 2015 - 2018, Luccioni Jesus Emanuel "J.E.L"
+## All rights reserved.
+#
+#******************************************************************
+##
+##
+#===============================================================================================================
+##
+##
+############################################[ begin install OF FILE ]###########################################
+##
+##
+#================================================================================================================
+#
+#=====================================================================================================
+##
+## Establecemos el numero de Reintentos
+PATH_TO_SYSTEM=/etc/systemd/system
+PATH_TO_BIN=/usr/bin
+PATH_SERVICE_FILE='./MonitoringTempBoard.service ./MonitoringFeederBoard.service'
+PATH_SERVICE_APP=./macrodaemon
+#
+#
+#=====================================================================================================
+## BEGIN function set_console_color($1 $2)
+## @brief : funcion para establecer el color del texto o background de la consola
+##
+## @param $1: El nombre del color el cual se quiere establecer
+##      + negro|Negro|NEGRO|BLACK
+##      + rojo|Rojo|ROJO|RED
+##      + verde|Verde|VERDE|GREEN
+##      + amarillo|Amarillo|AMARILLO|YELLOW
+##      + azul|Azul|AZUL|BLUE
+##      + magenta|Magenta|MAGENTA
+##      + cyan|Cyan|CYAN
+##      + blanco|Blanco|BLANCO|WHITE
+##
+## @param $2: Establecemos que color queremos establecer
+##      + text          , el del texto 
+##      + background    , el del fondo del texto (el cual se conbina con el del texto)
+##      + default       , valor diferente a los anteriores establece el del texto
+##
+#=====================================================================================================
+function set_console_color()
+{
+    local color_name
+    local prefix
+    if [ "$#" -eq "0" ]; 
+        then echo -ne "\e[0m"
+        TERMINAL_COLOR=0
+        return 1
+    else
+        color_name=$1
+    fi    
+    if [ "$#" -eq "2" ]; 
+    then 
+        case "$2" in
+        text|Text|TEXT) prefix=3 ;;
+        texto|Texto|TEXTO) prefix=3 ;;
+        background|Background|BACKGROUND) prefix=4 ;;
+        back|Back|BACK) prefix=4 ;;
+        fondo|Fondo|FONDO) prefix=4 ;;
+        *) prefix=3 ;; 
+        esac
+    else
+        prefix=3 
+    fi
+    case "$color_name" in
+        negro|Negro|NEGRO|BLACK) echo -ne "\e[1;${prefix}0m"; TERMINAL_COLOR=${prefix}0 ; return 0 ;;
+        rojo|Rojo|ROJO|RED) echo -ne "\e[1;${prefix}1m" ;TERMINAL_COLOR=${prefix}1 ; return 0 ;;
+        verde|Verde|VERDE|GREEN) echo -ne "\e[1;${prefix}2m" ; TERMINAL_COLOR=${prefix}2 ;return 0 ;;
+        amarillo|Amarillo|AMARILLO|YELLOW) echo -ne "\e[1;${prefix}3m" ; TERMINAL_COLOR=${prefix}3 ; return 0 ;;
+        azul|Azul|AZUL|BLUE) echo -ne "\e[1;${prefix}4m"; TERMINAL_COLOR=${prefix}4 ;return 0 ;;
+        magenta|Magenta|MAGENTA) echo -ne "\e[1;${prefix}5m" ; TERMINAL_COLOR=${prefix}5 ; return 0 ;;
+        cyan|Cyan|CYAN) echo -ne "\e[1;${prefix}6m" ;TERMINAL_COLOR=${prefix}6 ;return 0 ;;
+        blanco|Blanco|BLANCO|WHITE) echo -ne "\e[1;${prefix}7m" ; TERMINAL_COLOR=${prefix}7 ;return 0 ;;
+        reset|Reset|RESET) echo -ne "\e[0m" ; TERMINAL_COLOR=0 ; return 0 ;;
+        *) echo -ne "\e[0m" ; TERMINAL_COLOR=0 ; return 1 ;;
+    esac        
+}
+#=====================================================================================================
+## END function set_console_color($1 $2)
+#=====================================================================================================
+#
+#
+#=====================================================================================================
+## BEGIN function check_console_color()
+## @brief : chequea el color atual de la consola y en caso de no estar en el valor por defecto de la 
+## misma lo corrije.
+## @param $1 : nothing
+## @return nothing
+##
+#=====================================================================================================
+function check_console_color()
+{
+    if [ "$TERMINAL_COLOR" -ne "0" ]
+    then
+        echo -ne "\e[0m" 
+        TERMINAL_COLOR=0 
+    fi
+}
+#=====================================================================================================
+## END check_console_color()
+#=====================================================================================================
+#
+#
+#=====================================================================================================
+## BEGIN function printfontcolor($1 $2) 
+## @param $1 : mensaje
+## @param $2 : color
+## @return 
+##          + 3, Error con el numero de argumentos suministrados, no se suministraron argumetos validos.
+##          El mensaje puede estar vacio o no se especifico uno.
+##          + 2, Error con el numero de argumentos suministrados, falto especificar el color
+##          imprime con el color por defecto.
+##          + 1, Error, color no diponible para esta version.
+##          + 0, Color establecido de forma sastifactoria
+## @example 
+##          printfontcolor "El Valor de " "BLUE" ; printfontcolor "$VAR_NAME" "RED"
+## @note :
+##   En caso de ERROE|Error No se cambia el color actual de la consola, para mantener compativilidad
+#=====================================================================================================
+function printfontcolor() # mensaje color
+{
+    local msj
+    local color
+    local retValue
+    if [ "$#" -eq "2" ]
+    then
+        msj=$1
+        color=$2        
+    elif [ "$#" -eq "1" ] && [ "#1" -ne "0" ]; then
+        msj=$1
+        echo -ne "$msj"
+        return 2
+    else
+        return 3
+    fi    
+    set_console_color $color 
+    retValue=$?
+    echo -ne "$msj"
+    set_console_color "reset"
+    return $retValue  
+}
+#=====================================================================================================
+## END function printfontcolor($1 $2)
+#=====================================================================================================
+
+
+#
+#
+#=====================================================================================================
+## BEGIN function confirmacion( $1 )
+## @brief funcion para realizar la confirmacion, por parte del usuario, de un parametro ingresado
+## ingresado.
+##  $# = 0 : En caso de no pasar parametros muestra el mensaje "\tDesea Continuar (y/n): " y espera por 
+##           el ingreso de y o n.
+##  $# > 1 : Si pasamos mas de un argumetno por defecto retornara 1, que representa una no confirmacion.
+##
+## @param $0 : Mensaje que se Mostrara para el pedido de la confirmacion.
+## @return 
+##      + 0, SUCCESS se confirmo.
+##      + 1, No se confirmo.
+##
+#=====================================================================================================
+function confirmacion()
+{
+    local arg1
+     case "$#" in
+        "1")
+            arg1=$1
+            printfontcolor "$arg1" "BLUE"            
+        ;;
+        "0")
+            printfontcolor "\tDesea Continuar (y/n): "
+        ;;
+     esac       
+    ##
+    ##
+    read -n3 ret
+    echo ""
+    case "$ret" in
+    y|Y|s|S|yes)
+        return 0
+    ;;
+    n|N|no)
+        return 1    
+    ;;
+    *)
+        return 1
+    ;;
+    esac
+}
+#=====================================================================================================
+## END function confirmacion( $1 )
+#=====================================================================================================
+
+##
+##
+##====================================================================================================
+## BEGIN function main( $@ )
+## @brief funcion principal
+## @param $@ : listado de argumentos partiendo desde el $2 en adelante
+##
+##====================================================================================================
+function main()
+{
+  if [ "$#" -eq "0" ]; then main "install" ; return ; fi
+  
+  case "$1" in
+    install|--install)
+      ## -- Instalamos la aplicacion      
+#       printfontcolor "\t sudo cp -r ${PATH_SERVICE_FILE} $PATH_TO_SYSTEM \n" "CYAN"
+#       printfontcolor "\t sudo cp -r $PATH_SERVICE_APP $PATH_TO_BIN \n" "CYAN"
+#       printfontcolor "\t sudo sudo systemctl daemon-reload \n" "CYAN"
+      printfontcolor "\tInstalando la aplicacion\n" "BLUE"
+      sudo cp -r ${PATH_SERVICE_FILE} $PATH_TO_SYSTEM
+      sudo cp -r $PATH_SERVICE_APP $PATH_TO_BIN
+      ## actualizamos los archivos del Daemon
+      sudo sudo systemctl daemon-reload
+      ## 
+      return 0
+    ;;
+    --uninstall|uninstall)
+      printfontcolor "\tDesinstalando la aplicacion\n" "BLUE"
+      ## Detenemos los servicios
+      for srv in ${PATH_SERVICE_FILE}
+      do
+        ## extramos './' del inicio del string
+        tmp=${srv#*./}
+        ## extramos '.*' del final del string
+        srvname=${tmp%.*}
+#         printfontcolor "\t sudo systemctl stop $srvname  \n" "CYAN"        
+        sudo systemctl stop $srvname
+      done      
+      
+      ## Borramos los Archivos de configuracion de los servicios
+      for srv in ${PATH_SERVICE_FILE}
+      do        
+        tmp=${srv#*./}
+#         printfontcolor "\t sudo rm -f $PATH_TO_SYSTEM/$tmp \n" "CYAN"
+        sudo rm -f $PATH_TO_SYSTEM/$tmp
+      done      
+#       printfontcolor "\t sudo rm -f $PATH_TO_BIN/$PATH_SERVICE_APP \n" "CYAN"      
+      sudo rm -f $PATH_TO_BIN/$PATH_SERVICE_APP
+      sudo systemctl stop $srvname
+      printfontcolor "\t Reiniciando el sistema en 5 Segunos, presiones \"Ctrl + C\" para cancelar.\n" "CYAN"
+      exec `sleep 5`
+#       printfontcolor "\t Ejecutando shutdown.\n" "CYAN"
+      sudo shutdown -r 0
+    ;;    
+    --help|help)
+      printfontcolor " $0 :" "BLUE"; printfontcolor "Por defecto sin Argumentos, Copia los archivos en la ubicacion especifica de cada uno.\n" "GREEN";        
+      printfontcolor " $0 --install | install :" "BLUE"; printfontcolor " copia los archivos en la ubicacion especifica de cada uno.\n" "GREEN";
+      printfontcolor " $0 --uninstall | uninstall :" "BLUE"; printfontcolor " Detiene los Servicios, elimina los Script y el ejcutable." "GREEN";
+      printfontcolor " Peticiona el reinicio del directorio de servicios y reinicia el sistema.\n" "GREEN";
+      printfontcolor " $0 --help | help :" "BLUE"; printfontcolor " Visualiza este mensaje de ayuda.\n\n" "GREEN";        
+    ;;
+    *)
+      printfontcolor "\t$0 $1 " "RED" ; printfontcolor "\t Argumento \"$1\" invalido, intente con \"$0 help\".\n\n" "YELLOW";
+    ;;
+  esac
+  return 0
+}
+#=====================================================================================================
+## END function main( $@ )
+#=====================================================================================================
+##
+##
+main "$@" && exit 0 
+##
+##
+#===============================================================================================================
+##
+##
+############################################[ end   install OF FILE ]###########################################
+##
+##
+#================================================================================================================

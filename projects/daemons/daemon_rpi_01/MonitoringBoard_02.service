@@ -1,0 +1,28 @@
+[Unit]
+## Descricpion del Servicio, el cual residira en el target status
+Description=Monitoring Board 02
+## Despues de iniciar los servicios de red, podemos customizar el inicio
+After=network.target
+## Instanciamos el Servicio, en este caso para FeederBoard
+[Service]
+## Listado de arguentos 
+## -d Nombre del Daemon 
+## -p Nombre 'prefix' del puerto para el dispositivo
+## -l Directorio donde se creara el log del Daemon, necesario para recolectar errores del sistema
+## -r reintentos en caso no encontrar ningun disositivo
+ExecStart=daemonrpi -d Board_02 -r 10 -p ttyUSB -b 11500
+##
+## Establecemos el timeout de reinicio del servicio, en caso de que este finalice
+## es buena practica crear un archivo logger donde se puedan tomar detalles
+## del servicio, en caso de reinicio, falla de comunicacion y demas caracteristicas de analisis.
+RestartSec=1
+Type=forking
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+## Establecemos el privilegio de usuario root o super usuario para 
+## la ejecucion del comando, esto debe considerarce dentro del
+## codigo ya que las variables del contexto estan seteadas para root.
+User=root
+[Install]
+WantedBy=multi-user.target
