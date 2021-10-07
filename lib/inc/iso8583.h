@@ -45,7 +45,7 @@
  */
 #ifdef __cplusplus
 extern "C" 
-{ /* } */
+{ 
 #endif
 
 /* 
@@ -411,11 +411,11 @@ void iso8583_print(FILE *stream,iso8583_sT * msg, uint8_t flag);
 /** 
  * 
  * ******************************************************************************* 
- * \fn uint8_t iso8583_GetNumberFieldInBitMap(uint8_t **bitmap);
- * \brief funcion para obtener el numero de campos activos desde un bitmap, para
- * un mensaje en formato ISO-8583 
- * \param bitmap  : Array [][] con el bit map del mensaje ISO-8583. 
- * \return La cantidad de campos activos dentro del bit map.
+ * \fn uint8_t iso8583_GetNumberFieldInBitMap(iso8583_sT *pmsg ,uint8_t *errflag)
+ * \brief Funcion para obtener el numero de campos en un mensaje ISO8583 a partir de sus bitmap
+ * \param pmsg  : Puntero a la estructura del tipo \b iso8583_sT donde se alamcenara el contexto
+ * \param pflag : Puntero a la variable donde deseamos almacenar los flags, es opcional (no en uso aun)
+ * \return Numero de campos en la lista.
  * \version 01v01d00.
  * \note notq.
  * \warning mensaje de "warning". 
@@ -427,11 +427,10 @@ void iso8583_print(FILE *stream,iso8583_sT * msg, uint8_t flag);
  <PRE>
  
  </PRE>  
- FIXME: debemos independizarnos de tabla o array multidimencional
-  uint8_t iso8583_GetNumberFieldInBitMap(iso8583_sT * msg ,uint8_t **plist);
+ 
  *********************************************************************************/
-uint8_t iso8583_GetNumberFieldInBitMap(uint8_t bitmap[iso8583_BIT_MAP_NUMB][iso8583_BIT_MAP_LENG] \
-  ,uint8_t **plist);
+uint8_t iso8583_GetNumberFieldInBitMap(iso8583_sT *pmsg ,uint8_t *pflag);
+
 
 
 /** 

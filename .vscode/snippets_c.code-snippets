@@ -1,0 +1,209 @@
+{
+  "doxy function":
+  {
+    "prefix": "doxy_fn"
+    ,"body":[
+       "/** "
+      ," * \\fn ${1:int} ${2:${TM_FILENAME_BASE}_${3:fn_name}} (${4:int} ${5:arg_1}, ${6:int} ${7:arg_2});"
+      ," * \\brief descripcion breve "
+      ," * \\param ${5:arg1} : argument 1"
+      ," * \\param ${7:arg2} : argument 2"
+      ," * \\return type return value"
+      ," *    \\li ${8:0}, success"
+      ," *    \\li ${9:1}, failure"
+      ," * \\note ${10:note}"
+      ," * \\warning ${11:warning}"
+      ," * \\date ${12:$CURRENT_DAY_NAME} ${13:$CURRENT_DATE} de ${14:$CURRENT_MONTH_NAME}, ${15:$CURRENT_YEAR}."
+      ," * \\file $TM_FILENAME_BASE"
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"</PRE>"
+      ,"*/"
+      ,"${1:int} ${2:${TM_FILENAME_BASE}_${3:fn_name}} (${4:int} ${5:arg_1}, ${6:int} ${7:arg_2});"
+    ]
+    ,"description": "Interfas Function with Comment Style Doxygen"
+  }
+  
+  ,"doxy struct":
+  {
+    "prefix": "doxy_struct"
+    ,"body":[
+       "/** "
+      ," * \\struct ${1:name_sT};"
+      ," * \\brief descripcion breve "
+      ," * \\li \\ref ${2:item1};"
+      ," * \\li \\ref ${3:item2};"
+      ," * \\li \\ref ${4:item3};"
+      ," * \\note ${13:note}:"
+      ," * \\warning ${14:warning}:"
+      ," * \\date ${5:$CURRENT_DAY_NAME} ${6:$CURRENT_DATE} de ${7:$CURRENT_MONTH_NAME}, ${8:$CURRENT_YEAR}."      
+      ," * \\author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>."
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"$TM_FILENAME"
+      ,"</PRE>"
+      ,"*/"
+      ,"typedef struct ${9:__${1:name_sT}}"
+      ,"{"
+      ,"  ${10:int} ${2:item1};   /**<@brief descripcion breve del Item 1 ${10:int}  type */"
+      ,"  ${11:char} ${3:item2};  /**<@brief descripcion breve del Item 2 ${11:char} type */"
+      ,"  ${12:void*} ${4:item2}; /**<@brief descripcion breve del Item 3 ${12:void*} type */"
+      ,"}${1:name_sT};"
+    ]
+    ,"description": "Redefinicion de tipo Struct, con comentario estilo Doxygen"
+  }
+
+  ,"doxy union":
+  {
+    "prefix": "doxy_union"
+    ,"body":[
+       "/** "
+      ," * \\union ${1:name_uT};"
+      ," * \\brief descripcion breve "
+      ," * \\li \\ref ${2:item1};"
+      ," * \\li \\ref ${3:item2};"
+      ," * \\li \\ref ${4:item3};"
+      ," * \\li \\ref ${5:item4};"
+      ," * \\note {17:note}:"
+      ," * \\warning {18:warning}:" 
+      ," * \\date ${6:$CURRENT_DAY_NAME} ${7:$CURRENT_DATE} de ${8:$CURRENT_MONTH_NAME}, ${9:$CURRENT_YEAR}."
+      ," * \\author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>."
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"$TM_FILENAME"
+      ,"</PRE>"
+      ,"*/"
+      ,"typedef union ${10:__${1:name_uT}}"
+      ,"{"
+      ,"  struct"
+      ,"  {"
+      ,"   ${11:double} ${2:x};   /**<@brief descripcion breve del Item 1 ${11:double}  type */"
+      ,"   ${12:double} ${3:y};   /**<@brief descripcion breve del Item 2 ${12:double}  type */"
+      ,"  } ${13:point}; /**<@brief ${13:point} */"
+      ,"  struct"
+      ,"  {"
+      ,"   ${14:double} ${4:module};   /**<@brief descripcion breve del Item 1 ${14:double}  type */"
+      ,"   ${15:double} ${5:fase};     /**<@brief descripcion breve del Item 1 ${15:double}  type */"
+      ,"  } ${16:fasor}; /**<@brief ${16:fasor} */"
+      ,"}${1:name_uT};"
+    ]
+    ,"description": "Redefinicion de tipo Union, con comentario estilo Doxygen"
+  }
+
+  ,"doxy enum":
+  {
+    "prefix": "doxy_enum"
+    ,"body":[
+       "/** "
+      ," * \\enum ${1:name_eT};"
+      ," * \\brief descripcion breve "
+      ," * \\li \\ref ${2:name}${3:ITEM0};"
+      ," * \\li \\ref ${2:name}${4:ITEM1};"
+      ," * \\li \\ref ${2:name}${5:ITEM2};"
+      ," * \\li \\ref ${2:name}${6:ITEM3};"
+      ," * \\note {15:note}:"
+      ," * \\warning {16:warning}:" 
+      ," * \\date ${7:$CURRENT_DAY_NAME} ${8:$CURRENT_DATE} de ${9:$CURRENT_MONTH_NAME}, ${10:$CURRENT_YEAR}."
+      ," * \\author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>."
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"$TM_FILENAME"
+      ,"</PRE>"
+      ,"*/"
+      ,"typedef enum"
+      ,"{"
+      ,"  ${2:name}${3:ITEM0} = ${11:0x0}   /**<@brief descripcion de la etiqueta '${2:name}${3:ITEM0}' de Enumeracion ${1:name_eT}*/"
+      ,"  ,${2:name}${4:ITEM1} = ${12:0x1}   /**<@brief descripcion de la etiqueta '${2:name}${4:ITEM1}' de Enumeracion ${1:name_eT}*/"
+      ,"  ,${2:name}${5:ITEM2} = ${13:0x2}   /**<@brief descripcion de la etiqueta '${2:name}${5:ITEM2}' de Enumeracion ${1:name_eT}*/"
+      ,"  ,${2:name}${6:ITEM3} = ${14:0x3}   /**<@brief descripcion de la etiqueta '${2:name}${6:ITEM3}' de Enumeracion ${1:name_eT}*/"
+      ,"}${1:name_eT};"
+    ]
+    ,"description": "Redefinicion de tipo Enumeracion, con comentario estilo Doxygen"
+  }
+
+  ,"doxy typedef pointer function":
+  {
+    "prefix": "doxy_typedef_pfn"
+    ,"body":[
+       "/** "
+      ," * \\typedef ${1:pFnName_fT};"
+      ," * \\brief Descripcion breve sobre la redefinicion de puntero a funcion. "
+      ," * Prototipo de la funcion, al acual debe apuntar:"      
+      ," *  + ${2:int} fn_name (${3:void *})"
+      ," * \\note {8:note}:"
+      ," * \\warning {9:warning}:" 
+      ," * \\date ${4:$CURRENT_DAY_NAME} ${5:$CURRENT_DATE} de ${6:$CURRENT_MONTH_NAME}, ${7:$CURRENT_YEAR}."
+      ," * \\author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>."
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"$TM_FILENAME"
+      ,"</PRE>"
+      ,"*/"
+      ,"typedef ${2:int} (*${1:pFnName_fT}) (${3:void *});"
+    ]
+    ,"description": "Redefinicion de tipo puntero de funccion, con comentario estilo Doxygen"
+  }
+
+  ,"doxy typedef variable":
+  {
+    "prefix": "doxy_typedef_var"
+    ,"body":[
+       "/** "
+      ," * \\typedef ${1:varName_vT};"
+      ," * \\brief Descripcion breve sobre la redefinicion de un tipo de dato primitivo."      
+      ," * \\note ${7:note}:"
+      ," * \\warning ${8:warning}:"
+      ," * \\date ${2:$CURRENT_DAY_NAME} ${3:$CURRENT_DATE} de ${4:$CURRENT_MONTH_NAME}, ${5:$CURRENT_YEAR}."
+      ," * \\author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>."
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"$TM_FILENAME"
+      ,"</PRE>"
+      ,"*/"
+      ,"typedef ${6: unsigned int} ${1:varName_vT};"
+    ]
+    ,"description": "Redefinicion de variable primitiva, con comentario estilo Doxygen"
+  }
+
+  ,"doxy variable long format":
+  {
+    "prefix": "doxy_var_long"
+    ,"body":[
+       "/** "
+      ," * \\var ${1:varName};"
+      ," * \\brief Descripcion detallada sobre la variable global del tipo \\ref ${6: unsigned int}."
+      ," * \\note ${8:note}:"
+      ," * \\warning ${9:warning}:"
+      ," * \\date ${2:$CURRENT_DAY_NAME} ${3:$CURRENT_DATE} de ${4:$CURRENT_MONTH_NAME}, ${5:$CURRENT_YEAR}."
+      ," * \\author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>."
+      ," * \\par meil"
+      ," * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>"
+      ," * \\par example :"
+      ,"<PRE>"
+      ,"$TM_FILENAME"
+      ,"</PRE>"
+      ,"*/"
+      ,"${6: unsigned int} ${1:varName} = ${7:0} ;"
+    ]
+    ,"description": "Redefinicion de variable primitiva, con comentario estilo Doxygen"
+  }
+
+
+
+
+
+
+
+}

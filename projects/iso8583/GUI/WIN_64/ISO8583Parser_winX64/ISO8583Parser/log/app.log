@@ -1,0 +1,145 @@
+4/10/2021 19:3:48 - message to parsing F0F2F1F07ABA00010E80C200F1F6F4F7F6F1F3F4F0F0F0F0F0F0F0F0F4F3F0F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F9F3F0F1F1F2F2F4F3F6F1F0F0F0F0F0F0F0F0F3F4F6F7F1F1F2F2F4F3F0F9F3F0F0F8F2F7F0F6F5F2F1F0F6F7F0F0F0F0F0F0F0F0F3F4F6F7F1F1F6F3F2D7F0F0E2E3D5C3D9F0F2F0F0F6F8F0F6F8F0F1F68A023030910A11223344556677883030
+ 
+FRAME: [02107ABA00010E80C200164761340000000043011000000000001000000000001000093011224361000000003467112243093008270652106700000000346711632P00STNCR020068068016j“h]
+
+------------------------------------------------------------------------------------------------------------------------------
+  MTID |   BIT MAP 1         |  Cant Campos |  Status |  Last Field 
+------------------------------------------------------------------------------------------------------------------------------
+  0210 | 0x7ABA00010E80C200  |     18       |  0x0000 | [ 18] : 055 
+
+------------------------------------------------------------------------------------------------------------------------------
+  idx | Type | Len |                              Brief | Contenido del campo 
+------------------------------------------------------------------------------------------------------------------------------
+[002] | n    | 016 |                                PAN | [4761340000000043] 
+[003] | n    | 006 |                    Processing code | [011000] 
+[004] | n    | 012 |                Amount, transaction | [000000001000] 
+[005] | n    | 012 |                 Amount, Settlement | [000000001000] 
+[007] | n    | 010 |                    Trx date & time | [0930112243] 
+[009] | n    | 008 |        Conversion rate, Settlement | [61000000] 
+[011] | n    | 006 |         Systems trace audit number | [003467] 
+[012] | n    | 006 |            Time, Local transaction | [112243] 
+[013] | n    | 004 |      Date, Local transaction MM-DD | [0930] 
+[015] | n    | 004 |                   Date, Settlement | [0827] 
+[032] | n    | 006 |            Acquiring Inst. ID code | [521067] 
+[037] | an   | 012 |         Retrieval reference number | [000000003467] 
+[038] | an   | 006 |          Authorization ID response | [11632P] 
+[039] | an   | 002 |                      Response code | [00] 
+[041] | ans  | 008 |          Card acceptor terminal ID | [STNCR020] 
+[049] | a    | 003 |         Currency code, transaction | [068] 
+[050] | an   | 003 |          Currency code, settlement | [068] 
+[055] | ans  | 016 |                       Reserved ISO | [j“h] 
+
+4/10/2021 19:3:48 - message to parsing 010EF0F4F0F0FABF25C10EE0C0180000004000000000F1F6F4F7F6F1F3F4F0F0F0F0F0F0F0F0F4F3F0F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F2F0F2F1F0F9F3F0F1F1F6F1F0F0F0F0F0F0F0F0F3F4F6F7F1F1F2F2F4F3F0F9F3F07CAA55D8F0F8F2F7F2F0F2F1F0F6F8F0F5F1D9D6C6F0F0F1F2F0F6F5F2F1F0F6F7F0F0F0F0F0F0F0F0F3F4F6F7F1F1F6F3F2D7F9F9E2E3D5C3D9F0F2F0F5F8F9F3F5F8F0F040404040404040D9D7C5D5C9C14040404040404040404040404040404040C2C140404040404040404040404040C2D6F0F6F8F0F6F8F0F1F0F0F0F2F0F0F0F0F3F4F6F7F0F9F3F0F1F1F2F2F4F3F5F2F1F0F6F74040404040F0F0F0F0F0F0F0F0F0F0F0
+ 
+FRAME: [0400FABF25C10EE0C01800000040000000001647613400000000430110000000000010000000000010002021093011610000000034671122430930@Q08272021068051ROF00120652106700000000346711632P99STNCR02058935800       RPENIA                 BA             BO068068010002000034670930112243521067     00000000000]
+
+------------------------------------------------------------------------------------------------------------------------------
+  MTID |   BIT MAP 1         |   BIT MAP 2         |  Cant Campos |  Status |  Last Field 
+------------------------------------------------------------------------------------------------------------------------------
+  0400 | 0xFABF25C10EE0C018  | 0x0000004000000000  |     30       |  0x0043 | [ 28] : 061 
+
+------------------------------------------------------------------------------------------------------------------------------
+  idx | Type | Len |                              Brief | Contenido del campo 
+------------------------------------------------------------------------------------------------------------------------------
+[001] | b    | 016 |                          Bit Map 2 | [0000004000000000] 
+[002] | n    | 016 |                                PAN | [4761340000000043] 
+[003] | n    | 006 |                    Processing code | [011000] 
+[004] | n    | 012 |                Amount, transaction | [000000001000] 
+[005] | n    | 012 |                 Amount, Settlement | [000000001000] 
+[007] | n    | 010 |                    Trx date & time | [2021093011] 
+[009] | n    | 008 |        Conversion rate, Settlement | [61000000] 
+[011] | n    | 006 |         Systems trace audit number | [003467] 
+[012] | n    | 006 |            Time, Local transaction | [112243] 
+[013] | n    | 004 |      Date, Local transaction MM-DD | [0930] 
+[014] | n    | 004 |                   Date, Expiration | [@Q] 
+[015] | n    | 004 |                   Date, Settlement | [0827] 
+[016] | n    | 004 |                   Date, conversion | [2021] 
+[019] | n    | 003 |       Acquiring Inst. Country code | [068] 
+[022] | n    | 003 |        Point of service entry mode | [051] 
+[024] | n    | 003 |   Network International identifier | [ROF] 
+[025] | n    | 002 |    Point of service condition code | [00] 
+[026] | n    | 002 |      Point of service capture code | [12] 
+[032] | n    | 006 |            Acquiring Inst. ID code | [521067] 
+[037] | an   | 012 |         Retrieval reference number | [000000003467] 
+[038] | an   | 006 |          Authorization ID response | [11632P] 
+[039] | an   | 002 |                      Response code | [99] 
+[041] | ans  | 008 |          Card acceptor terminal ID | [STNCR020] 
+[042] | ans  | 015 |              Card acceptor ID code | [58935800       ] 
+[043] | ans  | 040 |        Card acceptor name/location | [RPENIA                 BA             BO] 
+[049] | a    | 003 |         Currency code, transaction | [068] 
+[050] | an   | 003 |          Currency code, settlement | [068] 
+[060] | an   | 001 |                 Advice/reason code | [0] 
+[061] | ans  | 002 |                   Reserved Private | [00] 
+[090] | n    | 042 |             Original data elements | [0034670930112243521067     00000000000] Warning, faltan Caracteres p/Obtener el Campo Completo. 
+
+4/10/2021 19:3:49 - message to parsing F0F4F1F0FABA00010E80C0000000004000000000F1F6F4F7F6F1F3F4F0F0F0F0F0F0F0F0F4F3F0F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F2F0F2F1F0F9F3F0F1F1F6F1F0F0F0F0F0F0F0F0F3F4F6F7F1F1F2F2F4F3F0F9F3F0F0F8F2F7F0F6F5F2F1F0F6F7F0F0F0F0F0F0F0F0F3F4F6F7F1F1F6F3F2D7F0F0E2E3D5C3D9F0F2F0F0F6F8F0F6F8F0F2F0F0F0F0F3F4F6F7F0F9F3F0404040404040F5F2F1F0F6F74040404040F0F0F0F0F0F0F0F0F0F0F0
+ 
+FRAME: [0410FABA00010E80C0000000004000000000164761340000000043011000000000001000000000000000202109301161000000003467112243093008270652106700000000346711632P00STNCR02006806802000034670930      521067     00000000000]
+
+------------------------------------------------------------------------------------------------------------------------------
+  MTID |   BIT MAP 1         |   BIT MAP 2         |  Cant Campos |  Status |  Last Field 
+------------------------------------------------------------------------------------------------------------------------------
+  0410 | 0xFABA00010E80C000  | 0x0000004000000000  |     19       |  0x0000 | [ 18] : 090 
+
+------------------------------------------------------------------------------------------------------------------------------
+  idx | Type | Len |                              Brief | Contenido del campo 
+------------------------------------------------------------------------------------------------------------------------------
+[001] | b    | 016 |                          Bit Map 2 | [0000004000000000] 
+[002] | n    | 016 |                                PAN | [4761340000000043] 
+[003] | n    | 006 |                    Processing code | [011000] 
+[004] | n    | 012 |                Amount, transaction | [000000001000] 
+[005] | n    | 012 |                 Amount, Settlement | [000000000000] 
+[007] | n    | 010 |                    Trx date & time | [2021093011] 
+[009] | n    | 008 |        Conversion rate, Settlement | [61000000] 
+[011] | n    | 006 |         Systems trace audit number | [003467] 
+[012] | n    | 006 |            Time, Local transaction | [112243] 
+[013] | n    | 004 |      Date, Local transaction MM-DD | [0930] 
+[015] | n    | 004 |                   Date, Settlement | [0827] 
+[032] | n    | 006 |            Acquiring Inst. ID code | [521067] 
+[037] | an   | 012 |         Retrieval reference number | [000000003467] 
+[038] | an   | 006 |          Authorization ID response | [11632P] 
+[039] | an   | 002 |                      Response code | [00] 
+[041] | ans  | 008 |          Card acceptor terminal ID | [STNCR020] 
+[049] | a    | 003 |         Currency code, transaction | [068] 
+[050] | an   | 003 |          Currency code, settlement | [068] 
+[090] | n    | 042 |             Original data elements | [02000034670930      521067     00000000000] 
+
+4/10/2021 19:3:49 - message to parsing 00BEF9F4F1F0FABA00010E80C0000000004000000000F1F6F4F7F6F1F3F4F0F0F0F0F0F0F0F0F4F3F0F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F2F0F2F1F0F9F3F0F1F1F6F1F0F0F0F0F0F0F0F0F3F4F6F7F1F1F2F2F4F3F0F9F3F0F0F8F2F7F0F6F5F2F1F0F6F7F0F0F0F0F0F0F0F0F3F4F6F7F1F1F6F3F2D7F0F0E2E3D5C3D9F0F2F0F0F6F8F0F6F8F0F2F0F0F0F0F3F4F6F7F0F9F3F0404040404040F5F2F1F0F6F74040404040F0F0F0F0F0F0F0F0F0F0F0
+ 
+FRAME: [9410FABA00010E80C0000000004000000000164761340000000043011000000000001000000000000000202109301161000000003467112243093008270652106700000000346711632P00STNCR02006806802000034670930      521067     00000000000]
+
+------------------------------------------------------------------------------------------------------------------------------
+  MTID |   BIT MAP 1         |   BIT MAP 2         |  Cant Campos |  Status |  Last Field 
+------------------------------------------------------------------------------------------------------------------------------
+  9410 | 0xFABA00010E80C000  | 0x0000004000000000  |     19       |  0x0000 | [ 18] : 090 
+
+------------------------------------------------------------------------------------------------------------------------------
+  idx | Type | Len |                              Brief | Contenido del campo 
+------------------------------------------------------------------------------------------------------------------------------
+[001] | b    | 016 |                          Bit Map 2 | [0000004000000000] 
+[002] | n    | 016 |                                PAN | [4761340000000043] 
+[003] | n    | 006 |                    Processing code | [011000] 
+[004] | n    | 012 |                Amount, transaction | [000000001000] 
+[005] | n    | 012 |                 Amount, Settlement | [000000000000] 
+[007] | n    | 010 |                    Trx date & time | [2021093011] 
+[009] | n    | 008 |        Conversion rate, Settlement | [61000000] 
+[011] | n    | 006 |         Systems trace audit number | [003467] 
+[012] | n    | 006 |            Time, Local transaction | [112243] 
+[013] | n    | 004 |      Date, Local transaction MM-DD | [0930] 
+[015] | n    | 004 |                   Date, Settlement | [0827] 
+[032] | n    | 006 |            Acquiring Inst. ID code | [521067] 
+[037] | an   | 012 |         Retrieval reference number | [000000003467] 
+[038] | an   | 006 |          Authorization ID response | [11632P] 
+[039] | an   | 002 |                      Response code | [00] 
+[041] | ans  | 008 |          Card acceptor terminal ID | [STNCR020] 
+[049] | a    | 003 |         Currency code, transaction | [068] 
+[050] | an   | 003 |          Currency code, settlement | [068] 
+[090] | n    | 042 |             Original data elements | [02000034670930      521067     00000000000] 
+
+4/10/2021 19:19:18 - run app 
+4/10/2021 19:25:23 - run app 
+4/10/2021 19:27:33 - run app 
+4/10/2021 19:42:36 - run app 
+4/10/2021 19:43:40 - run app 
+4/10/2021 19:47:17 - run app 
+4/10/2021 20:35:24 - run app 
