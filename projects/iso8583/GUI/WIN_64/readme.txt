@@ -11,8 +11,8 @@ Testing:
   <> Windows10 64-Bits
   
 Ubicacion del Log:
-  <> Ejecutmos la App, en el panel superior lado derecho realizamos click sobre 'Config' , en la barra desplegada seleccionamos 'Log info'. Esta accion desplegara una ventana emergente que contiene informacion del log, como tamaño y ubicacion actual (la cual dependera de donde coloque el directorio del ejecutable).
-  Si presionamos el boton 'Open Folder' abrira el directorio donde se encuentra el mismo. Podmeos abrir este archivo con cualquier editor de texto. Se aconseja usar notepad++ para ver la evolucion, de lo contrario si utilizamos el block de notas convencional debemos Cerrar y volver abrir para ver la actualizacion del mismo.
+  <> Ejecutamos la App, en el panel superior lado derecho realizamos click sobre 'Config' , en la barra desplegada seleccionamos 'Log info'. Esta accion desplegara una ventana emergente que contiene informacion del log, como tamaño y ubicacion actual (la cual dependera de donde coloque el directorio del ejecutable).
+  Si presionamos el boton 'Open Folder' abrira el directorio donde se encuentra el mismo. Podemos abrir este archivo con cualquier editor de texto. Se aconseja usar notepad++ para ver la evolucion, de lo contrario si utilizamos el block de notas convencional debemos Cerrar y volver abrir para ver la actualizacion del mismo.
   
   En el log podemos encontrar todas las expansiones realizadas en los diferentes formatos y con caracteres que no admite el plug-gin utf-8:
   Ejemplo:
