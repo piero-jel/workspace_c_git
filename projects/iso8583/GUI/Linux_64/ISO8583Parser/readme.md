@@ -1,20 +1,22 @@
-# Instalaccion Linux:
+## Instalaccion Linux:
 Copiar el contenido de este directorion en una ubicacion especifica, recomndacion crear un directorio 'install' bajo el directotio '/home/<User>/', y en este ultimo copiar completamente este directorio.
 
 
-## Crear un lanzador el cual contenga la siguente estructura (enlazando el archivo 'run.sh'):
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Icon=ibus-engine
-Icon[es_AR]=ibus-engine
-Name[es_AR]=ISO8583Parser
-Exec=/<path>/ISO8583Parser/run.sh
-Name=ISO8583Parser
+### Crear un lanzador el cual contenga la siguente estructura (enlazando el archivo 'run.sh'):
 
+  ~~~
+  [Desktop Entry]
+  Version=1.0
+  Type=Application
+  Terminal=false
+  Icon=ibus-engine
+  Icon[es_AR]=ibus-engine
+  Name[es_AR]=ISO8583Parser
+  Exec=/<path>/ISO8583Parser/run.sh
+  Name=ISO8583Parser
+  ~~~
 
-# Parsin de Mesnasjes ISO8583 en formato EBCDIC: 
-## Frame Example:
+## Parsin de Mesnasjes ISO8583 en formato EBCDIC: 
+### Frame Example:
 
 F0F2F0F0F2BA67C128E0D0180000000000000000F1F6F4F7F6F1F3F4F0F0F0F0F0F0F0F0F7F6F0F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F9F2F4F1F0F1F5F3F6F6F1F0F0F0F0F0F0F0F0F3F4F5F3F1F0F1F5F3F6F0F9F2F4F0F9F2F4F6F0F1F1F0F6F8F8F0F1404040D9D6C6F0F0F1F2F0F6F5F2F1F0F6F7F3F2F4F7F6F1F3F4F0F0F0F0F0F0F0F0F7F67EF2F2F1F2F2F2F1F1F4F5F8F8F9F7F2F0F0F0F0F0F0F0F0F3F4F5F3E2E3D5C3D9F0F2F0F5F8F9F3F5F8F0F0404040F0F0F0F0D9D7C5D5C9C14040404040404040404040404040404040C2C140404040404040404040404040C2D6F0F6F8F0F6F8F8F0F2F1C6F1F6F1F2C2C3C2C5C5C5F7F0F1F0F0
