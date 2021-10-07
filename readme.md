@@ -4,9 +4,9 @@
   Por ejemplo:
   ~~~  
   PROJECT = projects/templates/template
-  ~~
+  ~~~
   
-  ~~
+  ~~~
   PROJECT = projects/terminal/serial_terminal
   ~~~
   
