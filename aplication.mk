@@ -14,7 +14,8 @@
 # PROJECT = projects/daemons/daemon_rpi_01
 # PROJECT = projects/gpio/gpio_pthread
 
-PROJECT = projects/iso8583/msg_ebcdic_01
+# PROJECT = projects/iso8583/msg_ebcdic_01
+PROJECT = projects/linkedlist/sort_file
 ## -------------------------------------------------------------------
 ## END proyectos comunes
 ## -------------------------------------------------------------------

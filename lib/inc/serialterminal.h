@@ -57,7 +57,7 @@ extern "C" {
 #include <version.h>
 #include <assert.h>
 #include <stdctype.h> /* Redefinicion de variables primitivas */
-#include <stdcprint.h>
+#include <stdc_print.h>
 
 /* 
 * ======================[ END   include header file ]=================================

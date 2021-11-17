@@ -53,7 +53,7 @@ extern "C" {
   * ======================[ BEGIN include header file ]=================================
   */
 #include <stdctype.h>
-#include <stdcprint.h>
+#include <stdc_print.h>
 #include <stdint.h>
 #include <ctype.h>
 #include <error.h>

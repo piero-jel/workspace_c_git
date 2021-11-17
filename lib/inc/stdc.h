@@ -69,7 +69,7 @@ extern "C"
 #include <version.h>
 #include <stdctype.h>
 #include <stdcstr.h>
-#include <stdcprint.h>
+#include <stdc_print.h>
 #include <stdctimer.h>
 #include <stdcfile.h>
 /* en etapa de test 01d00v00*/

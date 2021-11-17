@@ -1,5 +1,5 @@
-#ifndef stdcprint_projectEnable
-#define stdcprint_projectEnable 1 /**<@brief enable/disable the project */
+#ifndef stdc_print_projectEnable
+#define stdc_print_projectEnable 1 /**<@brief enable/disable the project */
 #endif
 /** ***********************************************************************************//**
 * \addtogroup stdc 
@@ -11,7 +11,7 @@
 * Redistribution is not allowed on binary and source forms, with or without \n
 * modification. Use is permitted with prior authorization by the copyright 
 * holder. &copy;
-* \file stdcprint.h
+* \file stdc_print.h
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.    
 * \brief Descripcion breve.
 * \details Descripcion detallada.
@@ -29,11 +29,11 @@
 * @} doxygen end group definition 
 * ********************************************************************************** */
 
-#ifndef __stdcprint_h__
-#define __stdcprint_h__ /**<@brief Definimos el Nombre del modulo */
+#ifndef __stdc_print_h__
+#define __stdc_print_h__ /**<@brief Definimos el Nombre del modulo */
 
 
-#if (stdcprint_projectEnable == 1)
+#if (stdc_print_projectEnable == 1)
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *
@@ -53,7 +53,7 @@ extern "C"
 * ======================[ BEGIN include header file ]=================================
 */
 #include <version.h>
-#include <stdctype.h>
+//#include <stdctype.h>
 #include <stdint.h>
 #include <string.h>
 #include <ctype.h>
@@ -67,14 +67,14 @@ extern "C"
 /* 
 * ======================[ BEGIN labels enable/disable ]===============================
 */
-#define stdcprint_USE_GlobalMacro     1 /**<@brief enable/disable the use Global Macros/Labels */
-#define stdcprint_USE_GlobalTypedef   0 /**<@brief enable/disable the use Global Typedef */
-#define stdcprint_USE_GlobalData      0 /**<@brief enable/disable the use Global Data */
-#define stdcprint_USE_GlobalFunctions 1 /**<@brief enable/disable the use Gobal functions */
-#define stdcprint_USE_GlobalMacroApis 1 /**<@brief enable/disable the use Gobal macros functions */
+#define stdc_print_USE_GlobalMacro     1 /**<@brief enable/disable the use Global Macros/Labels */
+#define stdc_print_USE_GlobalTypedef   0 /**<@brief enable/disable the use Global Typedef */
+#define stdc_print_USE_GlobalData      0 /**<@brief enable/disable the use Global Data */
+#define stdc_print_USE_GlobalFunctions 1 /**<@brief enable/disable the use Gobal functions */
+#define stdc_print_USE_GlobalMacroApis 1 /**<@brief enable/disable the use Gobal macros functions */
 
 /**
-* \def __stdcprint_version__ definimos la version actual del proyecto.
+* \def __stdc_print_version__ definimos la version actual del proyecto.
 * version 01v00d00 -> test 
 * version 01v00d01 -> test 
 * version 01v00d02 -> test
@@ -83,19 +83,19 @@ extern "C"
 * version 01v00d05 -> test
 *
 * */
-#ifndef __stdcprint_version__
-#define __stdcprint_version__        version_SetNumber(01v00d00)
+#ifndef __stdc_print_version__
+#define __stdc_print_version__        version_SetNumber(01v00d00)
 #endif
 
 /* 
 * ======================[ END   labels enable/disable ]===============================
 */
-#if (version_QueryNumber(__stdcprint_version__,01v00d00))
+#if (version_QueryNumber(__stdc_print_version__,01v00d00))
 /* 
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ BEGIN __stdcprint_version__    01v00d00 ]───────────────────── │
+│ ─────────────────────[ BEGIN __stdc_print_version__    01v00d00 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
@@ -103,7 +103,7 @@ extern "C"
 /* 
 * ======================[ BEGIN Global Macros/labels definition ]=================
 */
-#if (stdcprint_USE_GlobalMacro == 1)
+#if (stdc_print_USE_GlobalMacro == 1)
 /*
 * Tamaños de Memorias, tamaño por debajo de 1K Bytes:
 *    32  64    128   256   512
@@ -118,6 +118,35 @@ extern "C"
 #define BUFFER_LEN_2K       2048
 #define BUFFER_LEN_4K       4096
 
+/* sizeof buffer */
+#define BUFFER_SIZE_128     0x00000080
+#define BUFFER_SIZE_256     0x00000100
+#define BUFFER_SIZE_512     0x00000200
+#define BUFFER_SIZE_1K      0x00000400
+#define BUFFER_SIZE_2K      0x00000800
+#define BUFFER_SIZE_4K      0x00001000
+#define BUFFER_SIZE_8K      0x00002000
+#define BUFFER_SIZE_16K     0x00004000
+#define BUFFER_SIZE_32K     0x00008000
+#define BUFFER_SIZE_64K     0x00010000
+#define BUFFER_SIZE_128K    0x00020000
+#define BUFFER_SIZE_256K    0x00040000
+#define BUFFER_SIZE_512K    0x00080000
+#define BUFFER_SIZE_1M      0x00100000
+#define BUFFER_SIZE_2M      0x00200000
+#define BUFFER_SIZE_4M      0x00400000
+#define BUFFER_SIZE_8M      0x00800000
+#define BUFFER_SIZE_16M     0x01000000
+#define BUFFER_SIZE_32M     0x02000000
+#define BUFFER_SIZE_64M     0x04000000
+#define BUFFER_SIZE_128M    0x08000000
+#define BUFFER_SIZE_256M    0x10000000
+#define BUFFER_SIZE_512M    0x20000000
+#define BUFFER_SIZE_1G      0x40000000
+#define BUFFER_SIZE_2G      0x80000000
+
+#define BUFFER_SIZE(Size)\
+  BUFFER_SIZE_##Size
 
 #define FONT_COLOR_BLACK            "\e[0;30m"
 #define FONT_COLOR_RED              "\e[0;31m"
@@ -142,22 +171,22 @@ extern "C"
 #define PRINTF_COLOR_RESET          "\033[0m"
 
 
-#define STDC_ERR  stdout
-#define STDC_DEBUG  stdout
+#define STDC_ERR            stdout
+#define STDC_DEBUG          stdout
 #define STDC_ERR_LEN_BUFF   256
-#define STDC_DEBUG_LEN_BUFF   256  
+#define STDC_DEBUG_LEN_BUFF 256  
 
-#endif /* #if(stdcprint_USE_GlobalMacro == 1) */
+#endif /* #if(stdc_print_USE_GlobalMacro == 1) */
 /* 
 * ======================[ END   Global Macros/labels definition ]=================
 */
 /* 
 * ======================[ BEGIN Global typedef      ]=============================
 */
-#if (stdcprint_USE_GlobalTypedef == 1)
+#if (stdc_print_USE_GlobalTypedef == 1)
 
 /**
-* \typedef stdcprint_tvar_ex_vT;
+* \typedef stdc_print_tvar_ex_vT;
 * \details Descripcion detallada sobre la redefinicion de un tipo de dato primitivo.
 * \brief Descripcion breve sobre la redefinicion de un tipo de dato primitivo.
 * \version 01v00d00.
@@ -167,11 +196,11 @@ extern "C"
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
 * \par meil
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
-typedef unsigned int stdcprint_tvar_ex_vT;
+typedef unsigned int stdc_print_tvar_ex_vT;
 
 
 /**
-* \typedef stdcprint_pfun_ex_fT;
+* \typedef stdc_print_pfun_ex_fT;
 * \details Descripcion detallada sobre la redefinicion de puntero a funcion.
 * \brief  Descripcion breve sobre la redefinicion de puntero a funcion.
 * Prototipo de la funcion, al acual debe apuntar:
@@ -183,11 +212,11 @@ typedef unsigned int stdcprint_tvar_ex_vT;
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
 * \par meil
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
-typedef void * (*stdcprint_pfun_ex_fT) (void *); 
+typedef void * (*stdc_print_pfun_ex_fT) (void *); 
 
 
 /**
-* \struct stdcprint_struct_ex_sT;
+* \struct stdc_print_struct_ex_sT;
 * \brief Descripcion breve sobre el tipo de estructura.
 * Elementos que componen a la Estructura de datos:
 *  \li \ref vtchar;
@@ -205,10 +234,10 @@ typedef struct
   char vtchar ;      /**<@brief descripcion del item vtchar */
   int vtint ;        /**<@brief descripcion del item vtint */
   double vtdouble ;  /**<@brief descripcion del item vtdouble */
-} stdcprint_struct_ex_sT ; 
+} stdc_print_struct_ex_sT ; 
 
 /**
-* \union stdcprint_union_ex_uT;
+* \union stdc_print_union_ex_uT;
 * \brief Descripcion breve sobre el tipo de union.
 * Elementos que componen la union:
 *   \li \ref item1 
@@ -223,17 +252,17 @@ typedef union
 {
   int item1;      /**<@brief descripcion breve del item1 de int type  */
   double item2;   /**<@brief descripcion breve del item2 de char type */
-} stdcprint_union_ex_uT;
+} stdc_print_union_ex_uT;
 
 
 /**
-* \enum stdcprint_enum_eT;
+* \enum stdc_print_enum_eT;
 * \details Descripcion detallada sobre la redefinicion de enumeracio.
 * \brief Descripcion breve sobre la redefinicion de este tipo de enumeracion.
 * Elementos que componen la enumeracion:
-*  \li \ref stdcprint_eITEM0 . 
-*  \li \ref stdcprint_eITEM1 .
-*  \li \ref stdcprint_eITEM2 .
+*  \li \ref stdc_print_eITEM0 . 
+*  \li \ref stdc_print_eITEM1 .
+*  \li \ref stdc_print_eITEM2 .
 * \version 01v00d00.
 * \warning mensaje de "warning".
 * \date Martes 04 de Mayo, 2021.
@@ -242,29 +271,29 @@ typedef union
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
 typedef enum
 {
-  stdcprint_eITEM0 = 0, /**<@brief descripcion breve de la etiqueta 'stdcprint_eITEM0' de Enumeracion */
-  stdcprint_eITEM1,     /**<@brief descripcion breve de la etiqueta 'stdcprint_eITEM1' de Enumeracion */
-  stdcprint_eITEM2 = 5  /**<@brief descripcion breve de la etiqueta 'stdcprint_eITEM2' de Enumeracion */
-} stdcprint_enum_eT;
+  stdc_print_eITEM0 = 0, /**<@brief descripcion breve de la etiqueta 'stdc_print_eITEM0' de Enumeracion */
+  stdc_print_eITEM1,     /**<@brief descripcion breve de la etiqueta 'stdc_print_eITEM1' de Enumeracion */
+  stdc_print_eITEM2 = 5  /**<@brief descripcion breve de la etiqueta 'stdc_print_eITEM2' de Enumeracion */
+} stdc_print_enum_eT;
 
-#endif /* #if(stdcprint_USE_GlobalTypedef == 1) */
+#endif /* #if(stdc_print_USE_GlobalTypedef == 1) */
 /* 
 * ======================[ END   Global typedef      ]=============================
 */
 /* 
 * =====================[ BEGIN Global variable declaration  ]=====================
 */
-#if (stdcprint_USE_GlobalData==1)
-extern unsigned int stdcprint_global_ex; /**<@brief variable global example, brief of data */
+#if (stdc_print_USE_GlobalData==1)
+extern unsigned int stdc_print_global_ex; /**<@brief variable global example, brief of data */
 
-#endif /* #if (stdcprint_USE_GlobalData==1) */
+#endif /* #if (stdc_print_USE_GlobalData==1) */
 /* 
 * =====================[ END   Global variable declaration  ]=====================
 */ 
 /* 
 * =====================[ BEGIN Global functions declaration ]=====================
 */
-#if (stdcprint_USE_GlobalFunctions == 1)
+#if (stdc_print_USE_GlobalFunctions == 1)
 /** 
 * 
 * ******************************************************************************* 
@@ -330,33 +359,36 @@ int stdc_debug(int color,const char *file, const char *funct\
 
 
 
-#endif /* #if (stdcprint_USE_GlobalFunctions == 1) */
+#endif /* #if (stdc_print_USE_GlobalFunctions == 1) */
 /* 
 * =====================[ END   Global functions declaration ]=====================
 */
 /* 
 * ======================[ BEGIN Global Macros functions ]=========================
 */
-#if ( stdcprint_USE_GlobalMacroApis == 1 )
+#if ( stdc_print_USE_GlobalMacroApis == 1 )
 
 
 
-/*
- * Macro funcion para obtener el numero de item de un array,
- * no el numero de bytes.
- */
-#define ARRAY_SIZE(Arr)     (sizeof(Arr)/sizeof(Arr[0])) 
-
-/*
- * set font color, inserta los caracteres para establecer el color 
+/**
+ * \def SET_COLOR_FONT(Color)
+ * \brief set font color, inserta los caracteres para establecer el color 
  * de la lentra.
  */
-#define SET_COLOR_FONT(Color)       FONT_COLOR_##Color
-/*
- * set background color, inserta los caracteres para establecer el color 
+/**
+ * \def SET_COLOR_BACK(Color)
+ * \brief set background color, inserta los caracteres para establecer el color 
  * de fondo para la lentra.
  */
+#if (!defined(SO_LINUX))
+#define SET_COLOR_FONT(Color)       " "       
+#define SET_COLOR_BACK(Color)       " "  
+#else
+#define SET_COLOR_FONT(Color)       FONT_COLOR_##Color
 #define SET_COLOR_BACK(Color)       BACKGROUND_COLOR_##Color
+#endif
+
+
 
 /********************************************************************//**
  * \def SET_COLOR(Type,Color);
@@ -372,6 +404,12 @@ int stdc_debug(int color,const char *file, const char *funct\
  * \warning mensaje de precaucion.
  * \par example :
  <PRE>
+  printf(SET_COLOR(FONT,RED)"");
+  ...
+  ...
+  printf(SET_COLOR(FONT,RED)"");
+  //   
+  //
   printf(SET_COLOR(FONT,RED)"\t El Numero aleatorio de %u\n"SET_COLOR(FONT,RESET),get_random(5));
   printf(SET_COLOR(FONT,GREEN)"\t El Numero aleatorio de %u\n"SET_COLOR(FONT,RESET),get_random(5));
   printf(SET_COLOR(FONT,YELLOW)"\t El Numero aleatorio de %u\n"SET_COLOR(FONT,RESET),get_random(5));
@@ -388,11 +426,15 @@ int stdc_debug(int color,const char *file, const char *funct\
   printf(SET_COLOR(BACK,MAGENTA)"\t El Numero aleatorio de %u\n"SET_COLOR(BACK,RESET),get_random(5));
   printf(SET_COLOR(BACK,CYAN)"\t El Numero aleatorio de %u\n"SET_COLOR(BACK,RESET),get_random(5));
   printf(SET_COLOR(BACK,WHITE)"\t El Numero aleatorio de %u\n"SET_COLOR(BACK,RESET),get_random(5));
-  printf(SET_COLOR(BACK,BLACK)"\t El Numero aleatorio de %u\n"SET_COLOR(BACK,RESET),get_random(5)); </PRE>
- *
- *********************************************************************/
+  printf(SET_COLOR(BACK,BLACK)"\t El Numero aleatorio de %u\n"SET_COLOR(BACK,RESET),get_random(5));
+</PRE>
+*********************************************************************/
 #define SET_COLOR(Type,Color) SET_COLOR_##Type(Color)
 
+/** 
+ * 
+ */
+#define SET_STREAM_COLOR(Stream,Type,Color) fprintf(Stream,SET_COLOR_##Type(Color))
 
 #define PRINTF_FONT_COLOR(Color,Fmt, ...) \
     printf(SET_COLOR(FONT,Color) Fmt SET_COLOR(FONT,RESET),__VA_ARGS__)
@@ -401,23 +443,30 @@ int stdc_debug(int color,const char *file, const char *funct\
     printf(SET_COLOR(BACK,Color) Fmt SET_COLOR(BACK,RESET),__VA_ARGS__)
 
 
-/* print error */    
+/* print error */
+#if (!defined(PERROR_EXIT_SUCCESS))
 #define PERROR_EXIT_SUCCESS(Nerr,...) \
 {\
   stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
   exit(EXIT_SUCCESS);\
 }
+#endif
 
+#if (!defined(PERROR_EXIT_FAILURE))
 #define PERROR_EXIT_FAILURE(Nerr,...) \
 {\
   stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
   exit(EXIT_FAILURE);\
 }
+#endif
 
 /*
 int stdc_perror(int errnum,const char *file, const char *funct\
   , size_t line, const char *fmt, ...); */
-#define PERROR_EXIT_NONE(Nerr,...) stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
+#if (!defined(PERROR_EXIT_NONE))
+#define PERROR_EXIT_NONE(Nerr,...)\
+  stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
+#endif
 
 
 /**
@@ -445,9 +494,10 @@ if(errnum != 0)
   NPERROR(errnum, NONE, "Error, al Intentar Bloquear/Tomar el Mutex\n");  
 return NULL;
 </PRE> 
-*********************************************************************************/   
+*********************************************************************************/ 
+#if (!defined(PERROR))
 #define PERROR(Nerr,Exit, ...) PERROR_EXIT_##Exit(Nerr,__VA_ARGS__)
-
+#endif
 
 #if (defined(DEBUG_ENABLE))
 
@@ -528,6 +578,10 @@ return NULL;
   if(pErrnot != NULL) \
     *pErrnot = Save; \
 }    
+
+
+  
+ 
     
     
     
@@ -546,26 +600,58 @@ return NULL;
  <PRE>
   CFPRINTF(BLUE,stdout,"Hola %d", argn);
  </PRE>
- */    
+ */
+#if (!defined(CFPRINTF))
 #define CFPRINTF(Color,File,Fmt, arg...) \
     fprintf(File,SET_COLOR(FONT,Color) Fmt SET_COLOR(FONT,RESET),##arg)
+#endif
 
 /**
  * \def CPRINTF(Color,Fmt, arg...)
  * \brief Funcion para imprimir un mensaje por stdout con conlor
  * \param Color   : Color deseado para el texto, este puede ser
- *  + GREEN | RED | BLUE | YELLOW
+ *    + RED | GREEN | YELLOW | BLUE | MAGENTA | CYAN | WHITE | BLACK
  * \param Fmt     : Stroing con formato.
  * \param arg...  : Demas Argumentos correspondiente al string cpn formato \ref Fmt.
  * \return nothing
 */
+#if (!defined(CPRINTF))
 #define CPRINTF(Color,Fmt, arg...) \
-    printf(SET_COLOR(FONT,Color) Fmt SET_COLOR(FONT,RESET), ##arg)
+    printf(SET_COLOR(FONT,Color) Fmt SET_COLOR(FONT,RESET), ##arg)    
+#endif
+    
+#if 0    
+#if (defined(DEBUG_PRINT_DISABLE))
+  #define DEBUG_CFPRINTF(Color,File,Fmt,...) CFPRINTF(Color,File,Fmt, __VA_ARGS__)
+  #define DEBUG_CPRINTF(Color,Fmt,...)  CPRINTF(Color,Fmt, __VA_ARGS__)
+#else
+  #define DEBUG_CFPRINTF(Color,File,Fmt,...) 
+  #define DEBUG_CPRINTF(Color,Fmt,...) 
+#endif
+#endif
+    
+    
+#if (!defined(STRERROR_R))
 
+#if (!defined(_GNU_SOURCE) && !defined(__USE_GNU) )
+static inline char * strerror_tmp(int err,char *buff, uint32_t len)
+{
+  strerror_r(err,buff,len);
+  return buff;
+}
+#define STRERROR_R(Errnum,ErrBuff)\
+    strerror_tmp(Errnum,ErrBuff,sizeof(ErrBuff))
+    
+#else
+#define STRERROR_R(Errnum,ErrBuff)\
+    strerror_r(Errnum,ErrBuff,sizeof(ErrBuff))
+    
+#endif
+#endif /* #if (!define(STRERROR_R)) */
+    
     
 
-
-#endif /* #if ( stdcprint_USE_GlobalMacroApis == 1 ) */
+#endif /* #if ( stdc_print_USE_GlobalMacroApis == 1 ) */
 /* 
 * ======================[ END   Global Macros functions ]=========================
 */
@@ -573,18 +659,18 @@ return NULL;
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ END   __stdcprint_version__    01v00d00 ]───────────────────── │
+│ ─────────────────────[ END   __stdc_print_version__    01v00d00 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
 *
 */
-#elif (version_QueryNumber(__stdcprint_version__,01v00d01))
+#elif (version_QueryNumber(__stdc_print_version__,01v00d01))
 /* 
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ BEGIN __stdcprint_version__    01v00d01 ]───────────────────── │
+│ ─────────────────────[ BEGIN __stdc_print_version__    01v00d01 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
@@ -596,7 +682,7 @@ return NULL;
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ END   __stdcprint_version__    01v00d01 ]───────────────────── │
+│ ─────────────────────[ END   __stdc_print_version__    01v00d01 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
@@ -613,7 +699,7 @@ return NULL;
 #endif
 /** @} doxygen end group definition */
 /*==============================[end of file]==============================*/
-#endif /* #ifndef __stdcprint_h__ */
+#endif /* #ifndef __stdc_print_h__ */
 /*
 *
 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -621,4 +707,4 @@ return NULL;
 * =============================[end of project file]========================================
 *
 * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-#endif /* #if(stdcprint_projectEnable == 1) */
+#endif /* #if(stdc_print_projectEnable == 1) */
