@@ -43,7 +43,8 @@ DEBUG_ENABLE ?= ENABLE
 APP_NAME = sort_file
 
 ## definimos los argumentos para el target prj_run
-ARGS ?= "$(shell pwd)/projects/linkedlist/sort_file/files/inputfile.log" "$(shell pwd)/projects/linkedlist/sort_file/files/outfile.log"
+ARGS ?= "$(shell pwd)/projects/linkedlist/sort_file/files/inputfile.log" \
+        "$(shell pwd)/projects/linkedlist/sort_file/files/outfile.log"
 #####################################################################################
 ## END   Definimos el nombre para la App, y un listado de ARG para target run
 #####################################################################################
