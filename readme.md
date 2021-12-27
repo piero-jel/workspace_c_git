@@ -44,9 +44,9 @@ PROJECT = projects/terminal/serial_terminal
   
   La extension dependera del S.O (**Sistema Operativo**), para windows debe ser __exe__ para linux podemos colocar __out__ o ninguna extension, en dicho caso tendremos **APP_NAME ?= AppName**.
   
-## Habilitando/deshabilitando y  seleccionando el cross-compiler
+## Estableciendo Cross Compiler
   En caso de necesitar compialr codigo para otras palataformas, considerando que la actual es del tipo **Linux 64**.
-  Dentro del archivo **aplication.mk** debemos establecer la variable **CROSS_COMPILER_PLATFORM**. Y si deseamso deshabilitar solamente debemos comentar la linea **#CROSS_COMPILER_PLATFORM**.
+  Dentro del archivo [**aplication.mk**](./aplication.mk)  debemos establecer la variable **CROSS_COMPILER_PLATFORM**. Y si deseamso deshabilitar solamente debemos comentar la linea **#CROSS_COMPILER_PLATFORM**.
   Ejemplo, habilitando la pataforma Linux 32 mientras las demas estan deshabilitanda:
   ~~~
   # CROSS_COMPILER_PLATFORM = WIN32
