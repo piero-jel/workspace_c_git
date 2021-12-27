@@ -57,12 +57,14 @@ include $(PROJECT)/Makefile
 ## BEGIN Definimos los simbolos para la compilacion
 ##
 #######################################################################################
-SYMBOLS = -D__main_version__=$(main_version)
+SYMBOLS += -D__main_version__=$(main_version)
 SYMBOLS += $(foreach VAR,$(PROJECT_MODULES_PATH), $($(notdir $(VAR)_SYMBOLS)))
 ## -- flags de depuracion 
 ifeq ($(DEBUG_ENABLE),ENABLE)
 SYMBOLS += -DDEBUG_ENABLE
 endif
+
+LIBRARY_EXT += m
 #######################################################################################
 ## END Definimos los simbolos para la compilacion
 #######################################################################################
@@ -165,6 +167,7 @@ COMPILE_MSG1 = Proyecto: $(patsubst projects/%,""%,$(PROJECT)), Aplicacion: \"$(
 COMPILE_MSG2 = Depuracion: $(MSG_DEBUG), Version del Main: \"$(main_version)\"
 COMPILE_MSG3 = CCFLAGS: $(CCFLAGS)
 COMPILE_MSG4 = Cross-Compiler: $(CROSS_COMPILER_PLATFORM), toolchain: \"$(CROSS_COMPILER)\", platform: \"$(PLATFORM)\"
+COMPILE_MSG5 = Symbols: $(SYMBOLS)
 
 #####################################################################################
 # END List compiler msg
@@ -198,6 +201,7 @@ $(APP_NAME): $(PROJECT_OBJS)
 	$(PRINTF) "$(FBLUE)\t$(COMPILE_MSG2)\n"
 	$(PRINTF) "$(FBLUE)\t$(COMPILE_MSG3)\n"
 	$(PRINTF) "$(FBLUE)\t$(COMPILE_MSG4)\n"
+	$(PRINTF) "$(FBLUE)\t$(COMPILE_MSG5)\n"
 	$(PRINTF) "$(FRESET)\n"
 	@$(CC) -o $(APP_PATH)/$(APP_NAME)$(OUT_EXT) $(PROJECT_OBJ_FILES)\
 	$(LDFLAGS) -L $(LIBS_PATH) $(addprefix -l,$(PROJECT_MODULES)) $(addprefix -l, $(PROJECT_LIBRARIES)) \
@@ -214,6 +218,7 @@ info:
 	$(CMD_ECHO) "LIBRARY_EXT : $(LIBRARY_EXT)"
 	$(CMD_ECHO) "LIBRARY_EXT_PATH : $(LIBRARY_EXT_PATH)"
 	$(CMD_ECHO) "LIBRARY_EXT_INCLUDE_PATH : $(LIBRARY_EXT_INCLUDE_PATH)"
+	$(CMD_ECHO) "SYMBOLS : $(SYMBOLS)"
 	
 	
 	$(CMD_ECHO) "===========[END, info: \"$(PROJECT)\"]==========\n"
