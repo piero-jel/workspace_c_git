@@ -65,12 +65,14 @@ To run this app, you will need to follow these 3 steps:
 
   - [Git Bash Windows](https://git-scm.com/downloads)
   - [Git Command in Linux]
-    opt 1
+  
+    * opt 1
     ~~~
       sudo apt-get update && sudo apt-get upgrade -y          
       sudo apt-get install git
     ~~~
-    opt 2
+    
+    * opt 2
     ~~~
       sudo apt update && sudo apt upgrade -y          
       sudo apt install git
