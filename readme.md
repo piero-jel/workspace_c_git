@@ -87,7 +87,8 @@ To run this app, you will need to follow these 3 steps:
     sudo apt install crossbuild-essential-armhf
     sudo apt install crossbuild-essential-arm64
   ~~~
-    - others tools:
+  
+    * others tools:
   ~~~
     sudo apt-get install -y build-essential
     sudo apt-get install -y libc6-armhf-cross
