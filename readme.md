@@ -18,21 +18,21 @@
   PROJECT = projects/terminal/serial_terminal
   ~~~
   
-#.[msg_ebcdic_01](./projects/iso8583/msg_ebcdic_01/readme.md)
+1. iso8583 [msg_ebcdic_01](./projects/iso8583/msg_ebcdic_01/readme.md)
   ~~~
   PROJECT = projects/iso8583/msg_ebcdic_01
   # PROJECT = projects/linkedlist/sort_file
   # PROJECT = projects/socket_red/flujo_cliente_servidor
   ~~~
   
-#.[sort_file](./projects/linkedlist/sort_file/readme.md)
+2. Lista enlazada [sort_file](./projects/linkedlist/sort_file/readme.md)
   ~~~
   # PROJECT = projects/iso8583/msg_ebcdic_01
   PROJECT = projects/linkedlist/sort_file
   # PROJECT = projects/socket_red/flujo_cliente_servidor
   ~~~
   
-#. [flujo_cliente_servidor](./projects/socket_red/flujo_cliente_servidor/readme.md)
+3. socket [flujo_cliente_servidor](./projects/socket_red/flujo_cliente_servidor/readme.md)
   ~~~
   # PROJECT = projects/iso8583/msg_ebcdic_01
   # PROJECT = projects/linkedlist/sort_file
