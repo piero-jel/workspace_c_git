@@ -61,14 +61,26 @@ To run this app, you will need to follow these 3 steps:
 #### 1. Requirements
   - a Laptop
 
-  - Text Editor or IDE (eg. vscode, kate, vi)
+  - Text Editor or IDE (eg. [vscode](https://code.visualstudio.com/download), [kate](https://kate-editor.org/es/), [vi/vim](https://www.vim.org/download.php))
 
-  - [Git](https://git-scm.com/downloads) installed on your Laptop.
+  - [Git Bash Windows](https://git-scm.com/downloads)
+  - [Git Command in Linux]
+    opt 1
+    ~~~
+      sudo apt-get update && sudo apt-get upgrade -y          
+      sudo apt-get install git
+    ~~~
+    opt 2
+    ~~~
+      sudo apt update && sudo apt upgrade -y          
+      sudo apt install git
+    ~~~
+    
 
 
 #### 2. Install cross compiler
   
-  - [Linux](https://platformio.org/platforms/linux_arm) ARM-Platform
+  - [Linux ARM-Platform](https://platformio.org/platforms/linux_arm) 
   ~~~
     sudo apt install crossbuild-essential-armhf
     sudo apt install crossbuild-essential-arm64
