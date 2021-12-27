@@ -7,16 +7,16 @@
 
 
 ## Seleccionando el Proyecto
-  Dentro del archivo **aplication.mk** debemos establecer la variable **PROJECT = __path/folder_project__**. 
-  
-  Por ejemplo:
-  ~~~  
-  PROJECT = projects/templates/template
-  ~~~
-  
-  ~~~
-  PROJECT = projects/terminal/serial_terminal
-  ~~~
+Dentro del archivo **aplication.mk** debemos establecer la variable **PROJECT = __path/folder_project__**. 
+
+- Por ejemplo:
+~~~  
+PROJECT = projects/templates/template
+~~~
+
+~~~
+PROJECT = projects/terminal/serial_terminal
+~~~
   
 1. iso8583 [msg_ebcdic_01](./projects/iso8583/msg_ebcdic_01/readme.md)
   ~~~

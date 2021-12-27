@@ -2,7 +2,7 @@
 Expansion de los campos de una Trx en formato String EBCDIC, segun norma ISO8583.
 
 ## Estableciendo la Trx:
-Desde el archivo [here](./config.mk) config.mk, podemos establecer el valor en la variable 'ARGS'
+Desde el archivo [config.mk](./config.mk), podemos establecer el valor en la variable 'ARGS'
 ~~~
   ARGS ?="F0F2F1F072BA00010A80C000F1F6F9F8F7F6F5F4F3F2F1F0F1F2F3F4F5F6F1F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F9F2F4F1F0F1F5F3F6F6F1F6F1F1F6F1F6F0F0F3F4F5F3F1F0F1F5F3F6F0F9F2F4F0F8F2F7F0F6F2F5F0F1F7F8F9F8F7F6F5F0F0F0F0F0F0F0F2F1E3E5D5C3D9F0F2F0F0F0F9F0F0F9"
 ~~~
