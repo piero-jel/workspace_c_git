@@ -73,7 +73,7 @@ To run this app, you will need to follow these 3 steps:
     sudo apt install crossbuild-essential-armhf
     sudo apt install crossbuild-essential-arm64
   ~~~
-    others tools:
+    - others tools:
   ~~~
     sudo apt-get install -y build-essential
     sudo apt-get install -y libc6-armhf-cross
@@ -84,7 +84,7 @@ To run this app, you will need to follow these 3 steps:
     sudo apt-get install -y gdb-multiarch
   ~~~
   
-  - [Linux] mingw, windows executables:
+  - Linux mingw, windows executables:
   ~~~
     sudo apt-get install mingw-w64
   ~~~
@@ -94,20 +94,31 @@ To run this app, you will need to follow these 3 steps:
   
 #### 3. Local Setup and Running on Windows, Linux and Mac OS
 
-  ```  
-  # Crating new directory, optional
-  $ mkdir workspaces
+  - Crating new directory, optional
+  ~~~
+    mkdir workspaces
+  ~~~
   
-  # move to the new directory, optional
-  $ cd workspaces
+  - Move to the new directory, optional
+  ~~~
+    cd ./workspaces
+  ~~~
   
-  # Clone this repository into the directory of your choice
-  $ git clone https://github.com/piero-jel/workspace_c_git.git
+  - Clone this repository into the directory of your choice
+  ~~~
+    git clone https://github.com/piero-jel/workspace_c_git.git
+  ~~~
 
-  # Move into project folder
-  $ cd ./workspace_c_git
+  - Move into project folder
+  ~~~
+    cd ./workspace_c_git
+  ~~~
 
-  # test workspace
-  $ make new
-  $ make run  
-  ```
+  - Test workspace
+  ~~~
+    make new
+    make run  
+  ~~~
+  
+  
+  
