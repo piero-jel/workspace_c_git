@@ -1,8 +1,8 @@
 ## Contenido
-* [Seleccionando el Proyecto](#SelectingTheProject)
-* [Estableciendo el nombre del Ejecutable](#Set-AppName)
-* [Habilitando/deshabilitando y seleccionando el cross-compiler](#EnableDisableCrossCompiler)
-* [Compilando y corriendo el el proyecto seleccionado](#MakeAndRunProject)
+* [Seleccionando el Proyecto](#seleccionando-el-proyecto)
+* [Estableciendo el nombre del Ejecutable](#estableciendo-el-nombre-del-ejecutable)
+* [Estableciendo Cross-Compiler](#estableciendo-cross-compiler)
+* [Compilando y corriendo el proyecto seleccionado](#compilando-y-corriendo-el-proyecto-seleccionado)
 
 
 ## Seleccionando el Proyecto
@@ -36,9 +36,19 @@
   CROSS_COMPILER_PLATFORM = LINUX32
   ~~~
   
-## Compilando y corriendo el el proyecto seleccionado:
-~~~
+## Compilando y corriendo el proyecto seleccionado:
+  ~~~
   make new
+  ~~~
+  ~~~
   make run
+  ~~~
+  ~~~
   make run ARGS="args"
-~~~
+  ~~~
+  ~~~
+  make debug
+  ~~~
+  ~~~
+  make debug ARGS="listado de argumentos"
+  ~~~
