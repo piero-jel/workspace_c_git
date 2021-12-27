@@ -83,13 +83,14 @@ To run this app, you will need to follow these 3 steps:
 #### 2. Install cross compiler
   
   - [Linux ARM-Platform](https://platformio.org/platforms/linux_arm) 
+  
   ~~~
     sudo apt install crossbuild-essential-armhf
     sudo apt install crossbuild-essential-arm64
   ~~~
   
-    * others tools:
-    
+  
+  * others tools
   ~~~
     sudo apt-get install -y build-essential
     sudo apt-get install -y libc6-armhf-cross
