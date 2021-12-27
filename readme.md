@@ -40,7 +40,7 @@ PROJECT = projects/terminal/serial_terminal
   ~~~
   
 ## Estableciendo el nombre del Ejecutable
-  Dentro del archivo **aplication.mk** debemos establecer la variable **APP_NAME ?= Name.extension**.
+  Dentro del archivo [**aplication.mk**](./aplication.mk) debemos establecer la variable **APP_NAME ?= Name.extension**.
   
   La extension dependera del S.O (**Sistema Operativo**), para windows debe ser __exe__ para linux podemos colocar __out__ o ninguna extension, en dicho caso tendremos **APP_NAME ?= AppName**.
   
