@@ -3,6 +3,7 @@
 * [Estableciendo el nombre del Ejecutable](#estableciendo-el-nombre-del-ejecutable)
 * [Estableciendo Cross-Compiler](#estableciendo-cross-compiler)
 * [Compilando y corriendo el proyecto seleccionado](#compilando-y-corriendo-el-proyecto-seleccionado)
+* [Configuracion](#configuracion)
 
 
 ## Seleccionando el Proyecto
@@ -52,3 +53,61 @@
   ~~~
   make debug ARGS="listado de argumentos"
   ~~~
+
+## Configuracion
+
+To run this app, you will need to follow these 3 steps:
+
+#### 1. Requirements
+  - a Laptop
+
+  - Text Editor or IDE (eg. vscode, kate, vi)
+
+  - [Git](https://git-scm.com/downloads) installed on your Laptop.
+
+
+#### 2. Install cross compiler
+  
+  - [Linux] ARM-Platform
+  ~~~
+    sudo apt install crossbuild-essential-armhf
+    sudo apt install crossbuild-essential-arm64
+  ~~~
+    others tools:
+  ~~~
+    sudo apt-get install -y build-essential
+    sudo apt-get install -y libc6-armhf-cross
+    sudo apt-get install -y libc6-dev-armhf-cross
+    sudo apt-get install -y binutils-arm-linux-gnueabihf
+    sudo apt-get install -y linux-libc-dev-armhf-cross
+    sudo apt-get install -y libstdc++6-armhf-cross
+    sudo apt-get install -y gdb-multiarch
+  ~~~
+  
+  - [Linux] mingw, windows executables:
+  ~~~
+    sudo apt-get install mingw-w64
+  ~~~
+  
+  - [Windows](https://www.cygwin.com/setup-x86_64.exe) CyG Win installs.
+  
+  
+#### 3. Local Setup and Running on Windows, Linux and Mac OS
+
+  ```  
+  # Crating new directory, optional
+  $ mkdir workspaces
+  
+  # move to the new directory, optional
+  $ cd workspaces
+  
+  # Clone this repository into the directory of your choice
+  $ git clone https://github.com/piero-jel/workspace_c_git.git
+
+  # Move into project folder
+  $ cd ./workspace_c_git
+
+  # test workspace
+  $ make new
+  $ make run  
+  ```
