@@ -20,10 +20,24 @@
   
   1. [msg_ebcdic_01](./projects/iso8583/msg_ebcdic_01/readme.md)
   ~~~
-    PROJECT = projects/iso8583/msg_ebcdic_01
+  PROJECT = projects/iso8583/msg_ebcdic_01
+  # PROJECT = projects/linkedlist/sort_file
+  # PROJECT = projects/socket_red/flujo_cliente_servidor
   ~~~
   
+  1. [sort_file](./projects/linkedlist/sort_file/readme.md)
+  ~~~
+  # PROJECT = projects/iso8583/msg_ebcdic_01
+  PROJECT = projects/linkedlist/sort_file
+  # PROJECT = projects/socket_red/flujo_cliente_servidor
+  ~~~
   
+  1. [flujo_cliente_servidor](./projects/socket_red/flujo_cliente_servidor/readme.md)
+  ~~~
+  # PROJECT = projects/iso8583/msg_ebcdic_01
+  # PROJECT = projects/linkedlist/sort_file
+  PROJECT = projects/socket_red/flujo_cliente_servidor
+  ~~~
   
 ## Estableciendo el nombre del Ejecutable
   Dentro del archivo **aplication.mk** debemos establecer la variable **APP_NAME ?= Name.extension**.

@@ -16,10 +16,9 @@
 
 PROJECT = projects/iso8583/msg_ebcdic_01
 # PROJECT = projects/linkedlist/sort_file
-
-
-
 # PROJECT = projects/socket_red/flujo_cliente_servidor
+
+
 ## -------------------------------------------------------------------
 ## END proyectos comunes
 ## -------------------------------------------------------------------
