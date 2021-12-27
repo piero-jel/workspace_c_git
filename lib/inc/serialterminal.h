@@ -34,7 +34,7 @@
 #define __serialterminal_h__ /**<@brief Definimos el Nombre del modulo */
 
 
-#if ((serialterminal_projectEnable == 1) && defined(SO_LINUX))
+#if (serialterminal_projectEnable == 1 && defined(SO_LINUX))
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *

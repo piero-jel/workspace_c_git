@@ -1,5 +1,5 @@
-#ifndef stdc_print_projectEnable
-#define stdc_print_projectEnable 1 /**<@brief enable/disable the project */
+#ifndef stdcprint_projectEnable
+#define stdcprint_projectEnable 1 /**<@brief enable/disable the project */
 #endif
 /** ***********************************************************************************//**
 * \addtogroup stdc 
@@ -11,7 +11,7 @@
 * Redistribution is not allowed on binary and source forms, with or without \n
 * modification. Use is permitted with prior authorization by the copyright 
 * holder. &copy;
-* \file stdc_print.h
+* \file stdcprint.h
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.    
 * \brief Descripcion breve.
 * \details Descripcion detallada.
@@ -29,11 +29,11 @@
 * @} doxygen end group definition 
 * ********************************************************************************** */
 
-#ifndef __stdc_print_h__
-#define __stdc_print_h__ /**<@brief Definimos el Nombre del modulo */
+#ifndef __stdcprint_h__
+#define __stdcprint_h__ /**<@brief Definimos el Nombre del modulo */
 
 
-#if (stdc_print_projectEnable == 1)
+#if (stdcprint_projectEnable == 1)
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *
@@ -53,7 +53,7 @@ extern "C"
 * ======================[ BEGIN include header file ]=================================
 */
 #include <version.h>
-#include <stdio.h>
+#include <stdctype.h>
 #include <stdint.h>
 #include <string.h>
 #include <ctype.h>
@@ -67,14 +67,14 @@ extern "C"
 /* 
 * ======================[ BEGIN labels enable/disable ]===============================
 */
-#define stdc_print_USE_GlobalMacro     1 /**<@brief enable/disable the use Global Macros/Labels */
-#define stdc_print_USE_GlobalTypedef   0 /**<@brief enable/disable the use Global Typedef */
-#define stdc_print_USE_GlobalData      0 /**<@brief enable/disable the use Global Data */
-#define stdc_print_USE_GlobalFunctions 1 /**<@brief enable/disable the use Gobal functions */
-#define stdc_print_USE_GlobalMacroApis 1 /**<@brief enable/disable the use Gobal macros functions */
+#define stdcprint_USE_GlobalMacro     1 /**<@brief enable/disable the use Global Macros/Labels */
+#define stdcprint_USE_GlobalTypedef   0 /**<@brief enable/disable the use Global Typedef */
+#define stdcprint_USE_GlobalData      0 /**<@brief enable/disable the use Global Data */
+#define stdcprint_USE_GlobalFunctions 1 /**<@brief enable/disable the use Gobal functions */
+#define stdcprint_USE_GlobalMacroApis 1 /**<@brief enable/disable the use Gobal macros functions */
 
 /**
-* \def __stdc_print_version__ definimos la version actual del proyecto.
+* \def __stdcprint_version__ definimos la version actual del proyecto.
 * version 01v00d00 -> test 
 * version 01v00d01 -> test 
 * version 01v00d02 -> test
@@ -83,19 +83,19 @@ extern "C"
 * version 01v00d05 -> test
 *
 * */
-#ifndef __stdc_print_version__
-#define __stdc_print_version__        version_SetNumber(01v00d00)
+#ifndef __stdcprint_version__
+#define __stdcprint_version__        version_SetNumber(01v00d00)
 #endif
 
 /* 
 * ======================[ END   labels enable/disable ]===============================
 */
-#if (version_QueryNumber(__stdc_print_version__,01v00d00))
+#if (version_QueryNumber(__stdcprint_version__,01v00d00))
 /* 
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ BEGIN __stdc_print_version__    01v00d00 ]───────────────────── │
+│ ─────────────────────[ BEGIN __stdcprint_version__    01v00d00 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
@@ -103,7 +103,7 @@ extern "C"
 /* 
 * ======================[ BEGIN Global Macros/labels definition ]=================
 */
-#if (stdc_print_USE_GlobalMacro == 1)
+#if (stdcprint_USE_GlobalMacro == 1)
 /*
 * Tamaños de Memorias, tamaño por debajo de 1K Bytes:
 *    32  64    128   256   512
@@ -176,17 +176,17 @@ extern "C"
 #define STDC_ERR_LEN_BUFF   256
 #define STDC_DEBUG_LEN_BUFF 256  
 
-#endif /* #if(stdc_print_USE_GlobalMacro == 1) */
+#endif /* #if(stdcprint_USE_GlobalMacro == 1) */
 /* 
 * ======================[ END   Global Macros/labels definition ]=================
 */
 /* 
 * ======================[ BEGIN Global typedef      ]=============================
 */
-#if (stdc_print_USE_GlobalTypedef == 1)
+#if (stdcprint_USE_GlobalTypedef == 1)
 
 /**
-* \typedef stdc_print_tvar_ex_vT;
+* \typedef stdcprint_tvar_ex_vT;
 * \details Descripcion detallada sobre la redefinicion de un tipo de dato primitivo.
 * \brief Descripcion breve sobre la redefinicion de un tipo de dato primitivo.
 * \version 01v00d00.
@@ -196,11 +196,11 @@ extern "C"
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
 * \par meil
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
-typedef unsigned int stdc_print_tvar_ex_vT;
+typedef unsigned int stdcprint_tvar_ex_vT;
 
 
 /**
-* \typedef stdc_print_pfun_ex_fT;
+* \typedef stdcprint_pfun_ex_fT;
 * \details Descripcion detallada sobre la redefinicion de puntero a funcion.
 * \brief  Descripcion breve sobre la redefinicion de puntero a funcion.
 * Prototipo de la funcion, al acual debe apuntar:
@@ -212,11 +212,11 @@ typedef unsigned int stdc_print_tvar_ex_vT;
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
 * \par meil
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
-typedef void * (*stdc_print_pfun_ex_fT) (void *); 
+typedef void * (*stdcprint_pfun_ex_fT) (void *); 
 
 
 /**
-* \struct stdc_print_struct_ex_sT;
+* \struct stdcprint_struct_ex_sT;
 * \brief Descripcion breve sobre el tipo de estructura.
 * Elementos que componen a la Estructura de datos:
 *  \li \ref vtchar;
@@ -234,10 +234,10 @@ typedef struct
   char vtchar ;      /**<@brief descripcion del item vtchar */
   int vtint ;        /**<@brief descripcion del item vtint */
   double vtdouble ;  /**<@brief descripcion del item vtdouble */
-} stdc_print_struct_ex_sT ; 
+} stdcprint_struct_ex_sT ; 
 
 /**
-* \union stdc_print_union_ex_uT;
+* \union stdcprint_union_ex_uT;
 * \brief Descripcion breve sobre el tipo de union.
 * Elementos que componen la union:
 *   \li \ref item1 
@@ -252,17 +252,17 @@ typedef union
 {
   int item1;      /**<@brief descripcion breve del item1 de int type  */
   double item2;   /**<@brief descripcion breve del item2 de char type */
-} stdc_print_union_ex_uT;
+} stdcprint_union_ex_uT;
 
 
 /**
-* \enum stdc_print_enum_eT;
+* \enum stdcprint_enum_eT;
 * \details Descripcion detallada sobre la redefinicion de enumeracio.
 * \brief Descripcion breve sobre la redefinicion de este tipo de enumeracion.
 * Elementos que componen la enumeracion:
-*  \li \ref stdc_print_eITEM0 . 
-*  \li \ref stdc_print_eITEM1 .
-*  \li \ref stdc_print_eITEM2 .
+*  \li \ref stdcprint_eITEM0 . 
+*  \li \ref stdcprint_eITEM1 .
+*  \li \ref stdcprint_eITEM2 .
 * \version 01v00d00.
 * \warning mensaje de "warning".
 * \date Martes 04 de Mayo, 2021.
@@ -271,42 +271,38 @@ typedef union
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
 typedef enum
 {
-  stdc_print_eITEM0 = 0, /**<@brief descripcion breve de la etiqueta 'stdc_print_eITEM0' de Enumeracion */
-  stdc_print_eITEM1,     /**<@brief descripcion breve de la etiqueta 'stdc_print_eITEM1' de Enumeracion */
-  stdc_print_eITEM2 = 5  /**<@brief descripcion breve de la etiqueta 'stdc_print_eITEM2' de Enumeracion */
-} stdc_print_enum_eT;
+  stdcprint_eITEM0 = 0, /**<@brief descripcion breve de la etiqueta 'stdcprint_eITEM0' de Enumeracion */
+  stdcprint_eITEM1,     /**<@brief descripcion breve de la etiqueta 'stdcprint_eITEM1' de Enumeracion */
+  stdcprint_eITEM2 = 5  /**<@brief descripcion breve de la etiqueta 'stdcprint_eITEM2' de Enumeracion */
+} stdcprint_enum_eT;
 
-#endif /* #if(stdc_print_USE_GlobalTypedef == 1) */
+#endif /* #if(stdcprint_USE_GlobalTypedef == 1) */
 /* 
 * ======================[ END   Global typedef      ]=============================
 */
 /* 
 * =====================[ BEGIN Global variable declaration  ]=====================
 */
-#if (stdc_print_USE_GlobalData==1)
-extern unsigned int stdc_print_global_ex; /**<@brief variable global example, brief of data */
+#if (stdcprint_USE_GlobalData==1)
+extern unsigned int stdcprint_global_ex; /**<@brief variable global example, brief of data */
 
-#endif /* #if (stdc_print_USE_GlobalData==1) */
+#endif /* #if (stdcprint_USE_GlobalData==1) */
 /* 
 * =====================[ END   Global variable declaration  ]=====================
 */ 
 /* 
 * =====================[ BEGIN Global functions declaration ]=====================
 */
-#if (stdc_print_USE_GlobalFunctions == 1)
+#if (stdcprint_USE_GlobalFunctions == 1)
 /** 
 * 
 * ******************************************************************************* 
-* \fn int stdc_perror(void* (*callback) (int,char*,size_t), int errnum,const char *file, const char *funct, size_t line, const char *fmt, ...);
+* \fn int stdc_perror(int errnum,const char *file, const char *funct, size_t line, const char *fmt, ...);
 * \brief funcion para imprimir un mensaje de error que acompaña al error estandar
 * junto con el Nombre del archivo, nombre de la funcion y Numero de linea donde 
 * se reporta el mismo.
-* \param callback : Funcion callback, del tipo \b void * callback(int errnum ,char* buf,size_t buflen),
-* para obtener el mensaje de error mediante el numero pasado.
-* En caso de \b NULL se toma \b strerror_r() como tal.
-* \param errnum : Numero de error este puede ser errno, si es menor a 0 se descarta imprimir 
-* el mensaje de error (comom tambien el Nombre del archivo, funcion y Numero de linea)
-* solo se imprime el fmt pasado en color correspondiente.
+*  breve sobre la funcion, \ref stdc_test_01().
+* \param errnum : Numeroo de error este puede ser errno.
 * \param file : Nombre del Archivo, este puede ser la macro \b __FILE__.
 * \param funct : Nombre de la fucion, este puede ser la macro \b __FUNCTION__.
 * \param line : Numero de linea donde se reporta el error, \b __LINE__.
@@ -327,8 +323,8 @@ extern unsigned int stdc_print_global_ex; /**<@brief variable global example, br
 * 
 * </PRE>  
 *********************************************************************************/
-int stdc_perror(void* (*callback) (int,char*,size_t), int errnum,const char *file\
-    , const char *funct, size_t line, const char *fmt, ...);
+int stdc_perror(int errnum,const char *file, const char *funct\
+  , size_t line, const char *fmt, ...);
 
 /**
 * 
@@ -363,14 +359,14 @@ int stdc_debug(int color,const char *file, const char *funct\
 
 
 
-#endif /* #if (stdc_print_USE_GlobalFunctions == 1) */
+#endif /* #if (stdcprint_USE_GlobalFunctions == 1) */
 /* 
 * =====================[ END   Global functions declaration ]=====================
 */
 /* 
 * ======================[ BEGIN Global Macros functions ]=========================
 */
-#if ( stdc_print_USE_GlobalMacroApis == 1 )
+#if ( stdcprint_USE_GlobalMacroApis == 1 )
 
 
 
@@ -451,14 +447,7 @@ int stdc_debug(int color,const char *file, const char *funct\
 #if (!defined(PERROR_EXIT_SUCCESS))
 #define PERROR_EXIT_SUCCESS(Nerr,...) \
 {\
-  stdc_perror(NULL,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
-  exit(EXIT_SUCCESS);\
-}
-#endif
-#if (!defined(FCPERROR_EXIT_SUCCESS))
-#define FCPERROR_EXIT_SUCCESS(FnCallback,Nerr,...) \
-{\
-  stdc_perror(FnCallback,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
+  stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
   exit(EXIT_SUCCESS);\
 }
 #endif
@@ -466,14 +455,7 @@ int stdc_debug(int color,const char *file, const char *funct\
 #if (!defined(PERROR_EXIT_FAILURE))
 #define PERROR_EXIT_FAILURE(Nerr,...) \
 {\
-  stdc_perror(NULL,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
-  exit(EXIT_FAILURE);\
-}
-#endif
-#if (!defined(FCPERROR_EXIT_FAILURE))
-#define FCPERROR_EXIT_FAILURE(FnCallback,Nerr,...) \
-{\
-  stdc_perror(FnCallback,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
+  stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
   exit(EXIT_FAILURE);\
 }
 #endif
@@ -483,13 +465,9 @@ int stdc_perror(int errnum,const char *file, const char *funct\
   , size_t line, const char *fmt, ...); */
 #if (!defined(PERROR_EXIT_NONE))
 #define PERROR_EXIT_NONE(Nerr,...)\
-  stdc_perror(NULL,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
+  stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
 #endif
 
-#if (!defined(FCPERROR_EXIT_NONE))
-#define FCPERROR_EXIT_NONE(FnCallback,Nerr,...)\
-  stdc_perror(FnCallback,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
-#endif
 
 /**
 * 
@@ -521,25 +499,17 @@ return NULL;
 #define PERROR(Nerr,Exit, ...) PERROR_EXIT_##Exit(Nerr,__VA_ARGS__)
 #endif
 
-#if (!defined(FCPERROR))
-#define FCPERROR(FnCallback,Nerr,Exit, ...) \
-    FCPERROR_EXIT_##Exit((void* (*) (int,char*,size_t) ) (FnCallback),Nerr,__VA_ARGS__)
-#endif
-
-
-
-
 #if (defined(DEBUG_ENABLE))
 
-#define DEBUG_PERROR_EXIT_NONE(Nerr,...) stdc_perror(NULL,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
+#define DEBUG_PERROR_EXIT_NONE(Nerr,...) stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__)
 #define DEBUG_PERROR_EXIT_FAILURE(Nerr,...) \
 {\
-  stdc_perror(NULL,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
+  stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
   exit(EXIT_FAILURE);\
 }
 #define DEBUG_PERROR_EXIT_SUCCESS(Nerr,...) \
 {\
-  stdc_perror(NULL,Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
+  stdc_perror(Nerr,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__);\
   exit(EXIT_SUCCESS);\
 }
 
@@ -666,8 +636,6 @@ return NULL;
 #if (!defined(_GNU_SOURCE) && !defined(__USE_GNU) )
 static inline char * strerror_tmp(int err,char *buff, uint32_t len)
 {
-  /* _SECIMP errno_t __cdecl strerror_s(char *_Buf,size_t _SizeInBytes,int _ErrNum); */
-  /* strerror_s(buff,len,err); */
   strerror_r(err,buff,len);
   return buff;
 }
@@ -683,7 +651,7 @@ static inline char * strerror_tmp(int err,char *buff, uint32_t len)
     
     
 
-#endif /* #if ( stdc_print_USE_GlobalMacroApis == 1 ) */
+#endif /* #if ( stdcprint_USE_GlobalMacroApis == 1 ) */
 /* 
 * ======================[ END   Global Macros functions ]=========================
 */
@@ -691,18 +659,18 @@ static inline char * strerror_tmp(int err,char *buff, uint32_t len)
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ END   __stdc_print_version__    01v00d00 ]───────────────────── │
+│ ─────────────────────[ END   __stdcprint_version__    01v00d00 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
 *
 */
-#elif (version_QueryNumber(__stdc_print_version__,01v00d01))
+#elif (version_QueryNumber(__stdcprint_version__,01v00d01))
 /* 
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ BEGIN __stdc_print_version__    01v00d01 ]───────────────────── │
+│ ─────────────────────[ BEGIN __stdcprint_version__    01v00d01 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
@@ -714,7 +682,7 @@ static inline char * strerror_tmp(int err,char *buff, uint32_t len)
 ┌───────────────────────────────────────────────────────────────────────────────────────┐           
 │                                                                                       │  
 │                                                                                       │  
-│ ─────────────────────[ END   __stdc_print_version__    01v00d01 ]───────────────────── │
+│ ─────────────────────[ END   __stdcprint_version__    01v00d01 ]───────────────────── │
 │                                                                                       │
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
@@ -731,7 +699,7 @@ static inline char * strerror_tmp(int err,char *buff, uint32_t len)
 #endif
 /** @} doxygen end group definition */
 /*==============================[end of file]==============================*/
-#endif /* #ifndef __stdc_print_h__ */
+#endif /* #ifndef __stdcprint_h__ */
 /*
 *
 * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -739,4 +707,4 @@ static inline char * strerror_tmp(int err,char *buff, uint32_t len)
 * =============================[end of project file]========================================
 *
 * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-#endif /* #if(stdc_print_projectEnable == 1) */
+#endif /* #if(stdcprint_projectEnable == 1) */

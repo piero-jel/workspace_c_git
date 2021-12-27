@@ -37,6 +37,7 @@
 #include <linkedlist.h>
 #include <stdc_print.h>
 #include <stdc.h>
+
 /*
  * ===========================[ END include header file   ]===========================
  * */
@@ -89,23 +90,40 @@ static inline int fn_printint( void *pdato, char *buff,unsigned int lbuff)
 }
 
 /**
- * \fn
- * \brief
- * \param
- * \return 
- * funcion callback que usa linkedlist para imprimir datos del tipo array de caracteres 'string'
- * 
- */
-static inline int fn_printstr( void *pdato, char *buff,unsigned int lbuff)
+ * \fn static inline char* fn_printstr( void *pdato)
+ * \brief funcion callback que usa linkedlist para imprimir datos del tipo string, 
+ * cadena de caracteres con caracter de finalizacion '\0'.
+ * \param pdato : Puntero del tipo void que representa el tipo de dato de la lista. 
+ * \param buff  : Puntero al buffer que usa la API de linkedlist para imprimir
+ * \param lbuff : La longitud del buffer anterior. * 
+ * \return Estado de la operacion
+ *    \li 0 : success
+ *    \li != 0 : Failure
+ * \version 01v00d01.
+ * \note Debe considerarse que la lista debe ser constituida  
+ * solo por datos del tipo string.
+ * \warning Solo para listas enlazadas compuesta por String.
+ * \date Lunes 01 de Noviembre, 2021.
+ * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+\code
+  if( (errnum = linkedlist_print(lista,stdout,fn_printstr)) != 0)
+  {
+    PERROR(errnum,FAILURE,"\tError al imprimir la lista\n"); 
+  }
+\endcode
+*/
+static inline int fn_printstr(FILE *stream, void *pdato)
 {
-  if(buff == NULL || lbuff == 0)
-    return EINVAL;
-  char *dato;
-  if(pdato != NULL)
-    dato = (char*) pdato;
+  if(stream == NULL)
+    return EINVAL;  
+  
+  if(pdato == NULL)
+    fprintf(stream,"%s","null");    
   else
-    dato = NULL;
-  snprintf(buff,lbuff,"%s", (dato == NULL)? "null":dato);
+    fprintf(stream,"%s",(char*) pdato );    
   return 0;
 }
 

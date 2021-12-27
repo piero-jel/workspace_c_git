@@ -33,8 +33,7 @@
 #ifndef __stdcfile_h__
 #define __stdcfile_h__ /**<@brief Definimos el Nombre del modulo */
 
-
-#if (stdcfile_projectEnable == 1)
+#if (stdcfile_projectEnable == 1 && defined(SO_LINUX))
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *
@@ -59,11 +58,9 @@ extern "C" {
 * ======================[ END   include header file ]=================================
 */
 
-/* 
-* ======================[ BEGIN labels enable/disable ]===============================
-*/
-#define stdcfile_USE_GlobalMacro     0 /**<@brief enable/disable the use Global Macros/Labels */
-#define stdcfile_USE_GlobalTypedef   0 /**<@brief enable/disable the use Global Typedef */
+/* ======================[ BEGIN labels enable/disable ]=============================== */
+#define stdcfile_USE_GlobalMacro     1 /**<@brief enable/disable the use Global Macros/Labels */
+#define stdcfile_USE_GlobalTypedef   1 /**<@brief enable/disable the use Global Typedef */
 #define stdcfile_USE_GlobalData      0 /**<@brief enable/disable the use Global Data */
 #define stdcfile_USE_GlobalFunctions 1 /**<@brief enable/disable the use Gobal functions */
 #define stdcfile_USE_GlobalMacroApis 0 /**<@brief enable/disable the use Gobal macros functions */
@@ -82,9 +79,7 @@ extern "C" {
 #define __stdcfile_version__        version_SetNumber(01v00d00)
 #endif
 
-/* 
-* ======================[ END   labels enable/disable ]===============================
-*/
+/* ======================[ END   labels enable/disable ]=============================== */
 
 
 #if (version_QueryNumber(__stdcfile_version__,01v00d00))
@@ -97,24 +92,74 @@ extern "C" {
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
 */
-/* 
-* ======================[ BEGIN Global Macros/labels definition ]=================
-*/
+/* ======================[ BEGIN Global Macros/labels definition ]================= */
 #if (stdcfile_USE_GlobalMacro == 1)
 
+#define stdcfile_CHECK_FILE   0x00
+#define stdcfile_CHECK_DIR    0x01
 
+#define stdcfile_SORT_NAME    0x00
+#define stdcfile_SORT_DATE    0x01
+#define stdcfile_SORT_SIZE    0x02
 
 #endif /* #if(stdcfile_USE_GlobalMacro == 1) */
-/* 
-* ======================[ END   Global Macros/labels definition ]=================
-*/
+/* ======================[ END   Global Macros/labels definition ]================= */
 
-
-/* 
-* ======================[ BEGIN Global typedef      ]=============================
-*/
+/* ======================[ BEGIN Global typedef      ]============================= */
 #if (stdcfile_USE_GlobalTypedef == 1)
 
+/**
+* \typedef stdcfile_reg_t;
+* \brief Estructura de datos para almacenar info de un archivos regular.
+*   \param path ruta y nombre del archivo.
+*   \param name Solo nombre con extension.
+*   \param date Fecha de ultima actualizacion del Archivo del tipo \b time_t.
+*   Podemos usar \b timestam_time2stamp(&a.date,buff,sizeof(buff));  para 
+*   obtener un formato de impresion.  
+* \version 01v01d01.
+* \note nota.
+* \warning mensaje de "warning". 
+* \date Jueves 11 de Marzo, 2021.
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+* \par meil
+* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
+typedef struct __stdcfile_reg_t
+{
+  char *path;     /**<@brief path name del archivo. */
+  char *name;     /**<@brief Solo nombre con extencion, para listado rapido. */
+  time_t date;    /**<@brief Last date (de acceso, modificacion o cambio de estado). */
+  ssize_t size;   /**<@brief tamaño del archivo. */
+  /*char *ext;*/
+  /*uint8_t type;*/
+#if 0  
+  time_t lastacc; /**<@brief Last file access */
+  time_t lastmod; /**<@brief Last file modification */
+  time_t stchang; /**<@brief Last status change */
+#endif
+}stdcfile_reg_t;
+
+/**
+* \typedef stdcfile_list_t;
+* \brief Estructura de datos para almacenar un listado de archivos.
+*   \param vitem vector de items del tipo \b stdcfile_reg_t.
+*   \param nitem Numero de item almacenados en el vector.
+* \version 01v01d01.
+* \note nota.
+* \warning mensaje de "warning". 
+* \date Jueves 11 de Marzo, 2021.
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+* \par meil
+* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+*/
+typedef struct __stdcfile_list_t
+{
+  stdcfile_reg_t *vitem;
+  uint32_t nitem;  
+}stdcfile_list_t;
+
+
+
+#if 0
 /**
 * \typedef stdcfile_tvar_ex_vT;
 * \details Descripcion detallada sobre la redefinicion de un tipo de dato primitivo.
@@ -123,9 +168,8 @@ extern "C" {
 * \note nota.
 * \warning mensaje de "warning". 
 * \date Jueves 11 de Marzo, 2021.
-* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
-* \par meil
-* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE> */
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.*
+* */
 typedef unsigned int stdcfile_tvar_ex_vT;
 
 
@@ -205,38 +249,26 @@ typedef enum
   stdcfile_eITEM1,     /**<@brief descripcion breve de la etiqueta 'stdcfile_eITEM1' de Enumeracion */
   stdcfile_eITEM2 = 5  /**<@brief descripcion breve de la etiqueta 'stdcfile_eITEM2' de Enumeracion */
 } stdcfile_enum_eT;
+#endif
 
 #endif /* #if(stdcfile_USE_GlobalTypedef == 1) */
-/* 
-* ======================[ END   Global typedef      ]=============================
-*/
+/* ======================[ END   Global typedef      ]============================= */
 
-/* 
-* ======================[ BEGIN local declaration   ]=============================
-*/
+/* ======================[ BEGIN local declaration   ]============================= */
 #ifdef __stdcfile_c__
 
 
 #endif /* #ifdef __stdcfile_c__ */
-/* 
-* ======================[ END   local declaration   ]=============================
-*/
+/* ======================[ END   local declaration   ]============================= */
 
-
-/* 
-* ======================[ BEGIN Global declaration  ]=============================
-*/
+/* ======================[ BEGIN Global declaration  ]============================= */
 #if (stdcfile_USE_GlobalData==1)
 extern unsigned int stdcfile_global_ex; /**<@brief variable global example, brief of data */
 
 #endif /* #if (stdcfile_USE_GlobalData==1) */
-/* 
-* ======================[ END   Global declaration  ]=============================
-*/
+/* ======================[ END   Global declaration  ]============================= */
 
-/* 
-* ======================[ BEGIN Global functions declaration ]====================
-*/
+/* ======================[ BEGIN Global functions declaration ]==================== */
 #if (stdcfile_USE_GlobalFunctions == 1)
 /** 
 * 
@@ -263,18 +295,17 @@ extern unsigned int stdcfile_global_ex; /**<@brief variable global example, brie
 *********************************************************************************/
 bool_t stdcfile_CheckModeFile(const char *mode);
 
-
+#if 0 
 /**
 * 
 * ******************************************************************************* 
-* \fn int stdcfile_test_02(unsigned int a,const char* name);
-* \details Descripcion detallada sobre la funcion \ref stdcfile_test_02().
-* \brief descripcion breve sobre la funcion, \ref stdcfile_test_02().
-* \param a : Puntero al array.
-* \param name : longitud del array.
+* \fn bool_t stdcfile_CheckPathFile(const char *path);
+* \brief Funcion que realiza el chequeo de un archivo.
+* \param path : Ruta y nombre del archivo a chequear su existencia.
 * \return status de la opreacion.
-*      \li 0, success
-*      \li 1, failure
+*      \li TRUE, success
+*      \li FALSE, failure, la ruta no corresponde a un archivo valido o el path
+* pasado es NULL.
 * \version 01v01d01.
 * \note notq.
 * \warning mensaje de "warning". 
@@ -284,19 +315,230 @@ bool_t stdcfile_CheckModeFile(const char *mode);
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
 * \par example :
 <PRE>
-
 </PRE>  
 *********************************************************************************/
 bool_t stdcfile_CheckPathFile(const char *path);
 
-#endif /* #if (stdcfile_USE_GlobalFunctions == 1) */
-/* 
-* ======================[ END   Global functions declaration ]====================
-*/
+/**
+ * \fn bool_t * stdcfile_checkPathDir(const char * pathdir)
+ * \brief Funcion para chequear si un una ruta corresponde a un direcotorio.
+ * \param pathdir  : Ruta y nombre del Directorio sobre el cual consultar. 
+ * \return 
+ *  \li TRUE el \b pathdir corresponde a un directorio.
+ *  \li FALSE el \b pathdir No corresponde a un directorio o el pathdir es NULL.
+ * \version 01v01d01.
+ * \note notq.
+ * \warning mensaje de "warning". 
+ * \date Jueves 11 de Marzo, 2021.
+ * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+ <PRE>
+ </PRE>  
+ */
+bool_t stdcfile_checkPathDir(const char * pathdir);
 
-/* 
-* ======================[ BEGIN Global Macros functions ]=========================
+#else
+
+
+
+
+/**
+ * \fn bool_t stdcfile_checkpath(const char * pathdir, uint8_t type)
+ * \brief Fucnion para chequear si un una reuta corresponde a un direcotorio.
+ * \param pathdir  : Ruta y nombre del Directorio sobre el cual consultar.
+ * \param type     : Tipo de archivo a verificar
+ *  \li stdcfile_CHECK_FILE : Archivo regular
+ *  \li stdcfile_CHECK_DIR  : Directorios 
+ * \return 
+ *  \li TRUE el \b pathdir corresponde a un directorio.
+ *  \li FALSE el \b pathdir No corresponde a un directorio.
+ */
+bool_t stdcfile_checkpath(const char * pathdir, uint8_t type);
+
+#define stdcfile_CheckPathFile(Path) \
+  stdcfile_checkpath(Path,stdcfile_CHECK_FILE)
+  
+#define stdcfile_checkPathDir(Pathdir) \
+  stdcfile_checkpath(Path,stdcfile_CHECK_DIR)
+
+#endif
+
+/**
+ * \fn int stdcfile_checkfile(const char * pathfile);
+ * \brief Funcion para checquear si un archivo existe. 
+ * \param pathfile : runta y nombre del archivo que se desea chequear.
+ * \return 
+ *  \li 0 , el pathfile o archivo existe 
+ *  \li -1, el archivo no existe
+ *  \li mayor a cero, surgio un error cuyo valor representa lo sucedido 'errno'.
+ * \version 01v01d01.
+ * \note note.
+ * \warning mensaje de "warning". 
+ * \date Jueves 11 de Marzo, 2021.
+ * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+<PRE>
+
+</PRE> */
+static inline int stdcfile_checkfile(const char * pathfile)
+{
+  if(pathfile == NULL )
+    return EINVAL;
+
+  struct stat sb;  
+  if (stat(pathfile, &sb) < 0)
+    return errno;
+  
+  if(sb.st_mode & S_IFREG)
+    return 0;
+  /* No sucedio un error, pero no es un archivo */
+  return -1; 
+}
+
+/**
+ * \fn int stdcfile_checkdir(const char * pathdir);
+ * \brief Funcion para checquear si un directorio existe. 
+ * \param pathdir : runta y nombre de la carpeta/directorio.
+ * \return 
+ *  \li 0 , el pathdir o directorio existe 
+ *  \li -1, el directorio no existe
+ *  \li mayor a cero, surgio un error cuyo valor representa lo sucedido 'errno'.
+ * \version 01v01d01.
+ * \note para muchos sistemas necesitamos un valor de retorno TRUE o FALSE. 
+ * En dicho caso podemos implementar esta funcion mediante la macro:
+ * \b stdcfile_mcheckdir()
+ * \warning mensaje de "warning". 
+ * \date Jueves 11 de Marzo, 2021.
+ * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+<PRE>
+
+</PRE> */
+static inline int stdcfile_checkdir(const char * pathdir)
+{
+  if(pathdir == NULL )
+    return EINVAL;
+
+  struct stat sb;  
+  if (stat(pathdir, &sb) < 0)
+  {    
+    return errno;
+  }
+    
+  if(sb.st_mode & S_IFDIR)
+    return 0;  
+  /* No sucedio un error, pero no es un directorio */
+  return -1; 
+}
+
+/** 
+ * \def stdcfile_mcheckdir (Pathdir);
+ * \brief macro funcion para chequear si un archivo existe.
+ * \param Pathfile : runta y nombre del archivo.
+ * \return return value
+ *    \li TRUE, el Pathfile existe.
+ *    \li FALSE, no se localizo el Pathfile.
+ * \note note
+ * \warning warning
+ * \date Tuesday 09 de November, 2021.
+ * \file stdcfile
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+<PRE>
+</PRE>*/
+#define stdcfile_mcheckfile(Pathfile) (stdcfile_checkfile(Pathfile) == 0) ? TRUE:FALSE
+
+/** 
+ * \def stdcfile_mcheckdir (Pathdir);
+ * \brief macro funcion para chequear si un archivo existe.
+ * \param Pathdir : runta y nombre de la carpeta/directorio. 
+ * \return return value
+ *    \li TRUE, el pathdir existe.
+ *    \li FALSE, no se localizo el pathdir.
+ * \note note
+ * \warning warning
+ * \date Tuesday 09 de November, 2021.
+ * \file stdcfile
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+<PRE>
+</PRE>*/
+#define stdcfile_mcheckdir(Pathdir) (stdcfile_checkdir(Pathdir) == 0) ? TRUE:FALSE
+
+/**
+ * \fn void stdcfile_freelist(stdcfile_list_t* plist)
+ * \brief Funcion para liberar una lista de archivos bajo un directorio
+ * creada por el llamado a la funcion \ref stdcfile_listregdir().
+ * \param plist     : Puntero a la lista de archivos que desea liberar.
+ * \return estado del ordenamiento.
+ *  \li TRUE , success
+ *  \li FALSE, failure 
 */
+void stdcfile_freelist(stdcfile_list_t* plist);
+
+/**
+ * \fn int32_t stdcfile_sortlistreg(stdcfile_list_t* plist, uint8_t sort);
+ * \brief Funcion para ordenar una lista de archivos regulares.
+ * \param plist     : Puntero a la lista de archivos regulares.
+ * \param sort      : Metodo de ordenamiento. 
+ *  \li stdcfile_SORT_NAME
+ *  \li stdcfile_SORT_DATE
+ *  \li stdcfile_SORT_SIZE
+ 
+ * \return la cantidad de saltos realizados para ordenar la lista
+ * para hacer un analisis estadistico. En caso de error retorna '-1'.  
+*/
+int32_t stdcfile_sortlistreg(stdcfile_list_t* plist, uint8_t sort);
+
+/**
+ * \fn stdcfile_list_t* stdcfile_listregdir(const char * pathdir, const char* ext);
+ * \brief Fucnion que devuelve un listado de archivos regulares contenidos dentro de
+ * un directorio, en funcion de la extencion del mismo (todos los que coinciden).
+ * \param pathdir   : Ruta y nombre del directorio.
+ * \param ext       : Extensio de los archivos a listar, si este es NULL lista 
+ * todos los archivos regulares dentro del directorio.
+ * \param sort      : Tipo de ordenamiento, por date/name.
+ * \return Estructura que contiene el listado de los archicos regulares peticionados
+ * en caso de falla retorna NULL.
+*/
+stdcfile_list_t* stdcfile_listregdir(const char * pathdir, const char* ext);
+
+/**
+ * \fn stdcfile_list_t* stdcfile_dup(tdcfile_list_t* plist);
+ * \brief Funcion que devuelve un duplicado de una lista de archivos.
+ * \param plist   : Lista de archivos.
+ * \return El duplicado de la lista, en caso de error retorna NULL.
+*/
+stdcfile_list_t* stdcfile_dupregdir(stdcfile_list_t* plist);
+
+
+/**
+ * \fn void stdcfile_printlist(FILE * stream,stdcfile_list_t *plist)
+ * \brief Fucnion que imprime por stdout el listado de archivo.
+ * \param stream   : Stream por donde imprimimos el listado.
+ * \param plist    : Listado de Archivos.
+ * \return nothind
+ */
+void stdcfile_printlist(FILE * stream,stdcfile_list_t *plist);
+
+
+
+
+
+
+
+#endif /* #if (stdcfile_USE_GlobalFunctions == 1) */
+/* ======================[ END   Global functions declaration ]==================== */
+
+/* ======================[ BEGIN Global Macros functions ]========================= */
 #if ( stdcfile_USE_GlobalMacroApis == 1 )
 /**
 * 
@@ -330,9 +572,7 @@ bool_t stdcfile_CheckPathFile(const char *path);
 
 
 #endif /* #if ( stdcfile_USE_GlobalMacroApis == 1 ) */
-/* 
-* ======================[ END   Global Macros functions ]=========================
-*/
+/* ======================[ END   Global Macros functions ]========================= */
 
 
 

@@ -28,7 +28,7 @@ main_version = $(ver_01v0d0)
 
 ##
 # DEBUG_ENABLE ?= ENABLE
-DEBUG_ENABLE ?= ENABLE
+# DEBUG_ENABLE ?= ENABLE
 ##
 ##
 #####################################################################################
@@ -57,7 +57,12 @@ ARGS ?= "$(shell pwd)/projects/linkedlist/sort_file/files/inputfile.log" \
 ## 	-lm 		: math
 ##	-lpthread	: poxis thread	
 #######################################################################################
-PROJECT_LIBRARIES_EXT = linkedlist stdc_print version m
+STDC_DEPENDENCY = version stdc_print stdc_str miscellaneous
+PROJECT_DEPENDENCY = linkedlist
+PROJECT_MODULES = $(PROJECT_DEPENDENCY) $(STDC_DEPENDENCY)
+PROJECT_LIBRARIES_EXT = $(PROJECT_MODULES)
+
+#PROJECT_LIBRARIES_EXT = linkedlist miscellaneous stdc_str stdc_print version m
 PROJECT_LIBRARIES_EXT_INCLUDE_PATH = lib/inc
 
 

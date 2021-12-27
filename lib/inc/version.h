@@ -66,7 +66,7 @@ extern "C" {
  * ==========================[ Begin Global Macros/labels definition]===========================
  *
  * ******************************************************************************************** **/
-#if(version_USE_GlobalMacro == 1)
+#if (version_USE_GlobalMacro == 1)
 
 /**
 * Formato :
@@ -90,13 +90,62 @@ extern "C" {
 *       ..
 *       + 05v04e02
 */
-
+#include <stdio.h>
  
 /* 
  * 
  * ===================[ Begin, Listado Versionado 'd',estado en depuracion ]==================== 
  *
  */  
+
+/**
+ * ********************************************************************************************* 
+ * \fn char* version_getstr(unsigned long int number,char *buff,unsigned long int lbuff);
+ * \brief descripcion breve 
+ * \param number  : Numero que representa la version.
+ * \param buff    : Buffer
+ * \param lbuff   : sizeof Buffer
+ * \return type return value
+ *    \li 0, success
+ *    \li 1, failure
+ * \note note
+ * \warning warning
+ * \date Tuesday 07 de September, 2021.
+ * \file version
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+<PRE>
+</PRE>
+* **********************************************************************************************/
+static inline char* version_getstr(unsigned long int number,char *buff,unsigned long int lbuff)
+{
+  typedef unsigned char uint8_t;
+  /** #define version_List_01v00d00    0x10d0 
+   * version_List_01v00d00    0x<a><b><type><c> 
+  */
+  uint8_t a,b,c,type;
+  c = (uint8_t) (number & 0x000F);
+  type = (uint8_t) ((number>>4) & 0x000F);
+  b = (uint8_t) ((number>>8) & 0x000F);
+  a = (uint8_t) ((number>>12) & 0x000F);
+  snprintf(buff,lbuff,"%02uv%02u%c%02u",a,b,(type == 0xd)?'d':'e',c);
+  return buff;
+}
+/**
+ * ********************************************************************************************* 
+ * \def version_mgetstr(Number,Buff)
+ * \brief Macro funcion para obtener desde un numero entero de 16-bit un string que representa 
+ * la version del numero.
+ * \param Number  : Numero de la Version
+ * \param Buff    : Buffer donde se requeire almacenar el string que representa el numero
+ * \return 
+ *  + success string que representa la version
+ *  + failure NULL
+ * **********************************************************************************************/
+#define version_mgetstr(Number,Buff) \
+  version_getstr(Number,Buff,sizeof(Buff))
+
 
 /*-- 01v00d00 */
 #define version_List_01v00d00    0x10d0

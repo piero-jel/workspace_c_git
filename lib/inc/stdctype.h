@@ -1,11 +1,11 @@
 #define stdctype_projectEnable 1 /**<@brief enable/disable the project in case of versioned */
 /** ***********************************************************************************//**
-* \addtogroup base 
+* \addtogroup miscellaneous 
 * @{ 
 * \copyright  
 * 2021, Luccioni Jesús Emanuel \n
 * All rights reserved.\n 
-* This file is part of base .\n
+* This file is part of miscellaneous .\n
 * Redistribution is not allowed on binary and source forms, with or without \n
 * modification. Use is permitted with prior authorization by the copyright 
 * holder. &copy;
@@ -45,27 +45,27 @@ extern "C" {
 /* 
  * *********************************************************************************************
  *
- * =================================[ Begin include header file ]================================
+ * =================================[ BEGIN include header file ]================================
  *
  * ******************************************************************************************** 
  * TODO: include header file sector, "only in case especific" 
  */
 /** example : #include <nmbHeaderFile.h> */
 #include <stdio.h>
-#include <stdctype.h>
+//#include <stdctype.h>
 #include <stdc_print.h>
 #include <stdarg.h>
 /*
  * *********************************************************************************************
  *
- * ==================================[ End include header file ]=================================
+ * ==================================[ END include header file ]=================================
  *
  * *********************************************************************************************
  */
 
 /* **********************************************************************************************
  *
- * ==========================[ Begin labels enable/disable functions ]===========================
+ * ==========================[ BEGIN labels enable/disable functions ]===========================
  *
  * ******************************************************************************************** 
  * TODO: labels enable/disable functions
@@ -82,14 +82,14 @@ extern "C" {
 
 /* **********************************************************************************************
  *
- * ==========================[ End labels enable/disable functions ]===========================
+ * ==========================[ END labels enable/disable functions ]===========================
  *
  * ******************************************************************************************** **/
 /* 
  *  
  * *********************************************************************************************
  *
- * ==========================[ Begin Global Macros/labels definition]===========================
+ * ==========================[ BEGIN Global Macros/labels definition]===========================
  *
  * ******************************************************************************************** **/
 #if (stdctype_USE_GlobalMacro==1)
@@ -136,7 +136,7 @@ terminate main() or some other non-void function. */
 #endif /* #if(stdctype_USE_GlobalMacro==1) */
 /* **********************************************************************************************
  *
- * ==========================[ End Macros/labels Globals ]===========================
+ * ==========================[ END Macros/labels Globals ]===========================
  *
  * ******************************************************************************************** **/
 /*
@@ -453,8 +453,8 @@ typedef struct
 * \brief Macro funcion para realizar el casting de puntero a void a contenedores
 * del tipo entero con y sin signo { uint16_t|int16_t|uint32_t|int32_t }
 * \param Type : Tipo de casting
-*   \li UINT2PVOID
-*   \li PVOID2UINT
+*   \li UINT2PVOID    -> CAST_VOID(UINT2PVOID,varname) : casting de entero sin signo a puntero void 
+*   \li PVOID2UINT    -> CAST_VOID(PVOID2UINT,varname) : casting de puntero void a entero sin signo 
 *   \li INT2PVOID
 *   \li PVOID2INT
 * 
@@ -664,20 +664,22 @@ static inline void stdctype_StdinGetLine(const char * format, ...)
 #endif /*#if(stdctype_USE_GlobalFunctions==1) */
 /* ---------------------------------------------------------------------------------
  *
- * ==================[End Global functions declaration]=========================
+ * ==================[END Global functions declaration]=========================
  *
  * --------------------------------------------------------------------------------*/
 /*
  * *********************************************************************************************
  *
- * ===========================[ Begin Global Macros functions ]==================================
+ * ===========================[ BEGIN Global Macros functions ]==================================
  *
  ********************************************************************************************** */
 #if (stdctype_USE_GlobalMacroApis==1)
 #define ASSERT_ENABLE_EXITS   1 /* Enable '1'/Disable '0' la terminacion del programa si asser check es success */
 
-#if (!defined(ASSERT) && defined(SO_LINUX))
+#ifndef ASSERT 
+#if (defined(SO_LINUX))
 extern int errno;
+#endif
 #define ASSERT(Expresion,File,Line) \
 {\
   if(Expresion) \
@@ -697,6 +699,36 @@ extern int errno;
  * \return nothing 
  *********************************************************************/
 #define stdctype_nASSERT(Expresion) ASSERT((Expresion),__FILE__,__LINE__)
+
+
+/** definimos las funciones que no estan para windows 
+ * debemos definirla para windows
+*/
+#if (!defined(SO_LINUX))
+#define strerror_r(Errnum,Buff,LBuff)
+#define bzero(ByteBuff,Len) memset(ByteBuff,0,Len)
+#endif
+
+#if (!defined(M_PI))
+#define M_PI  3.1415
+/** long long int ssize_t;
+ * \brief Descripcion breve sobre la redefinicion de un tipo de dato primitivo.
+ * \note note:
+ * \warning warning:
+ * \date Wednesday 20 de October, 2021.
+ * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+ * \par meil
+ * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+ * \par example :
+<PRE>
+stdctype.h
+</PRE>
+*/
+// typedef  long long int ssize_t;
+#include <unistd.h>
+#endif
+
+
 
 #endif /* #if(stdctype_USE_GlobalMacroApis==1) */
 /* **********************************************************************************************

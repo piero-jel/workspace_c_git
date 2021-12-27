@@ -33,8 +33,8 @@
 #ifndef __timestamp_h__
 #define __timestamp_h__ /**<@brief Definimos el Nombre del modulo */
 
+#if (timestamp_projectEnable == 1 && defined(SO_LINUX))
 
-#if (timestamp_projectEnable == 1)
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *
@@ -178,7 +178,7 @@ typedef struct
   uint8_t ss;       /**<@brief Variable que almacena los Segundos */
 }timestamp_t;  
 
-
+typedef struct timeval timestampval_t;
 #if 0
 /**
 * \typedef timestamp_tvar_ex_vT;
@@ -284,14 +284,13 @@ extern unsigned int timestamp_global_ex; /**<@brief variable global example, bri
 /** 
 * 
 * ******************************************************************************* 
-* \fn int timestamp_test_01(unsigned int a,const char* name);
-* \details Descripcion detallada sobre la funcion \ref timestamp_test_01().
-* \brief descripcion breve sobre la funcion, \ref timestamp_test_01().
-* \param a : Puntero al array.
-* \param name : longitud del array.
+* \fn bool_t timestamp_FillStruct(timestamp_t *pt);
+* \brief Funcion que llena una estructura del tipo \ref timestamp_t con los valores 
+* actuales de tiempo y fecha (actuales al S.O)
+* \param pt : Puntero a la estructura que se debe llenar.
 * \return status de la opreacion.
-*      \li 0, success
-*      \li 1, failure
+*      \li TRUE, success
+*      \li FALSE, failure
 * \version 01v01d00.
 * \note notq.
 * \warning mensaje de "warning". 
@@ -309,14 +308,33 @@ bool_t timestamp_FillStruct(timestamp_t *pt);
 /**
 * 
 * ******************************************************************************* 
-* \fn int timestamp_test_02(unsigned int a,const char* name);
-* \details Descripcion detallada sobre la funcion \ref timestamp_test_02().
-* \brief descripcion breve sobre la funcion, \ref timestamp_test_02().
-* \param a : Puntero al array.
-* \param name : longitud del array.
+* \fn bool_t timestamp_FillBuff( char * buff,size_t lbuff,const char * sep,uint8_t fmt)
+*
+* \brief Funcion para realizar el llenado de una buffer con el time stamp actual 
+* del sitema (del S.O) 
+* \param buff   : Puntero al buffer.
+* \param lbuff  : longitud del array.
+* \param sep    : String de separador, ejemplos "/ :" "- :" ": :" "- -"
+*   \li  sep[0] separador para Fecha
+*   \li  sep[1] separador entre Fecha y Hora
+*   \li  sep[2] separador para Hora
+* \param fmt    : Formato de impresion
+*    \li timestamp_FMT_DDMMYYYY
+*    \li timestamp_FMT_DDYYYYMM
+*    \li timestamp_FMT_MMDDYYYY
+*    \li timestamp_FMT_MMYYYYDD
+*    \li timestamp_FMT_YYYYMMDD
+*    \li timestamp_FMT_YYYYDDMM
+*    \li timestamp_FMT_DDMMYY
+*    \li timestamp_FMT_DDYYMM
+*    \li timestamp_FMT_MMDDYY
+*    \li timestamp_FMT_MMYYDD
+*    \li timestamp_FMT_YYMMDD
+*    \li timestamp_FMT_YYDDMM
+
 * \return status de la opreacion.
-*      \li 0, success
-*      \li 1, failure
+*      \li TRUE, success
+*      \li FALSE, failure
 * \version 01v01d00.
 * \note notq.
 * \warning mensaje de "warning". 
@@ -329,10 +347,60 @@ bool_t timestamp_FillStruct(timestamp_t *pt);
 
 </PRE>  
 *********************************************************************************/
-bool_t timestamp_FillBuff( char * buff,size_t lbuff,const char * sep \
+bool_t timestamp_FillBuff( char * buff,uint32_t lbuff,const char * sep \
                            /* "/:" "-:" "::" "--" datetime*/,uint8_t fmt);
 
 
+/**
+* 
+* ******************************************************************************* 
+* \fn int64_t timestam_time2stamp(time_t *ptime,char *buff, uint32_t lbuff);
+* \brief Funcion para convertir un time_t en un timestamp 
+* \param ptime  : Puntero al time_t
+* \param buff   : Buffer donde colocaremos el resultado.
+* \param lbuff  : longitud del array.
+* \return si el valor retornado es menor a cero '-1' tenemos un error, de lo 
+* contrario devuelve el valor en 64 bits del timestamp.
+* \version 01v01d00.
+* \note notq.
+* \warning mensaje de "warning". 
+* \date Jueves 04 de Marzo, 2021.
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+* \par meil
+* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+* \par example :
+<PRE>
+  gettimeofday(&timevalue,NULL);
+  val = timestam_time2stamp(&timevalue.tv_sec,buff,sizeof(buff));    
+  printf("\t%25.19s\t%017lu\n",buff,val);
+</PRE>  
+*********************************************************************************/
+int64_t timestam_time2stamp(time_t *ptime,char *buff, uint32_t lbuff);
+/**
+* 
+* ******************************************************************************* 
+* \fn int64_t timestam_timeval2stamp(timestampval_t *ptime,char *buff, uint32_t lbuff);
+* \brief Funcion para convertir un timeval_t \ref timestampval_t en un timestamp 
+* \param ptime  : Puntero al timeval_t \ref timestampval_t 
+* \param buff   : Buffer donde colocaremos el resultado.
+* \param lbuff  : longitud del array.
+* \return si el valor retornado es menor a cero '-1' tenemos un error, de lo 
+* contrario devuelve el valor en 64 bits del timestamp.
+* \version 01v01d00.
+* \note notq.
+* \warning mensaje de "warning". 
+* \date Jueves 04 de Marzo, 2021.
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+* \par meil
+* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+* \par example :
+<PRE>
+  gettimeofday(&timevalue,NULL);
+  val = timestam_timeval2stamp(&timevalue,buff,sizeof(buff));
+  printf("\t%25.22s\t%017lu\n",buff,(uint64_t)val);
+</PRE>  
+*********************************************************************************/
+int64_t timestam_timeval2stamp(timestampval_t *ptime,char *buff, uint32_t lbuff);
 
 #endif /* #if (timestamp_USE_GlobalFunctions == 1) */
 /* 

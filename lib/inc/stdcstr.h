@@ -42,16 +42,12 @@
  *
  * ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-/*
- * ============================[Open, cplusplus]============================ 
- */
+/* ============================[Open, cplusplus]============================  */
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* 
-  * ======================[ BEGIN include header file ]=================================
-  */
+/* ======================[ BEGIN include header file ]================================= */
 #include <stdctype.h>
 #include <stdc_print.h>
 #include <stdint.h>
@@ -59,13 +55,10 @@ extern "C" {
 #include <error.h>
 #include <errno.h>
 #include <version.h>
-/* 
-  * ======================[ END   include header file ]=================================
-  */
 
-/* 
-  * ======================[ BEGIN labels enable/disable ]===============================
-  */
+/* ======================[ END   include header file ]================================= */
+
+/* ======================[ BEGIN labels enable/disable ]=============================== */
 #define stdcstr_USE_GlobalMacro     0 /**<@brief enable/disable the use Global Macros/Labels */
 #define stdcstr_USE_GlobalTypedef   1 /**<@brief enable/disable the use Global Typedef */
 #define stdcstr_USE_GlobalData      0 /**<@brief enable/disable the use Global Data */
@@ -86,9 +79,7 @@ extern "C" {
 #define __stdcstr_version__        version_SetNumber(01v00d01)
 #endif
 
-/* 
-  * ======================[ END   labels enable/disable ]===============================
-  */
+/* ======================[ END   labels enable/disable ]=============================== */
 
 
 #if (version_QueryNumber(__stdcstr_version__,01v00d00) \
@@ -102,22 +93,15 @@ extern "C" {
   * │                                                                                       │             
   * └───────────────────────────────────────────────────────────────────────────────────────┘
   */
-/* 
-  * ======================[ BEGIN Global Macros/labels definition ]=================
-  */
+/* ======================[ BEGIN Global Macros/labels definition ]================= */
 #if (stdcstr_USE_GlobalMacro == 1)
 
 
-
 #endif /* #if(stdcstr_USE_GlobalMacro == 1) */
-/* 
-  * ======================[ END   Global Macros/labels definition ]=================
-  */
+/* ======================[ END   Global Macros/labels definition ]================= */
 
 
-/* 
-  * ======================[ BEGIN Global typedef      ]=============================
-  */
+/* ======================[ BEGIN Global typedef      ]============================= */
 #if (stdcstr_USE_GlobalTypedef == 1)
 
 
@@ -281,24 +265,18 @@ typedef enum
 
 
 #endif /* #if(stdcstr_USE_GlobalTypedef == 1) */
-/* 
-  * ======================[ END   Global typedef      ]=============================
-  */
+/* ======================[ END   Global typedef      ]============================= */
 
-/* 
-  * ==================[ BEGIN Global variable declaration  ]=========================
-  */
+/* ==================[ BEGIN Global variable declaration  ]========================= */
 #if (stdcstr_USE_GlobalData==1)
 extern unsigned int stdcstr_global_ex; /**<@brief variable global example, brief of data */
 
 #endif /* #if (stdcstr_USE_GlobalData==1) */
-/* 
-  * ==================[ END   Global variable declaration  ]=========================
-  */
-/* 
-  * ======================[ BEGIN Global functions declaration ]====================
-  */
+/* ==================[ END   Global variable declaration  ]========================= */
+
+/* ======================[ BEGIN Global functions declaration ]==================== */
 #if (stdcstr_USE_GlobalFunctions == 1)
+
 /*******************************************************************************//** 
 * \fn char * stdcstr_breaktoken(const char *pstr,const char *token,char **premaind);
 * \brief Funcion para Obtener el string remanente en funcion de un token. Esta busca
@@ -486,7 +464,7 @@ bool_t stdcstr_containsNumbers(const char *pstr,char** pnum, stdcstr_rnumber_t *
 *      \li TRUE, success
 *      \li FALSE, failure
 * \version 01v01d01.
-* \note notq.
+* \note note.
 * \warning mensaje de "warning". 
 * \date Lunes 12 de Abril, 2021.
 * \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
@@ -494,7 +472,7 @@ bool_t stdcstr_containsNumbers(const char *pstr,char** pnum, stdcstr_rnumber_t *
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
 * \par example :
 * <PRE>
-* 
+
 * </PRE>  
   *********************************************************************************/
 bool_t stdcstr_getInteger(const char *pstr,void *pval, bool_t force, uint8_t type);
@@ -595,7 +573,7 @@ FIXME : no esta definida aun.
 
 </PRE> 
  * *********************************************************************************/
-#define stdcstr_DPERROR(Nerr,Exit, ...)  DEBUG_PERROR(Nerr,Exit,__VA_ARGS__)
+#define stdcstr_DPERROR(Nerr,Exit, ...)  /*DEBUG_PERROR(Nerr,Exit,__VA_ARGS__) */
 
 /********************************************************************************//**
 * \def stdcstr_DPRINTF(...)

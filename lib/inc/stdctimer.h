@@ -263,6 +263,39 @@ extern unsigned int stdctimer_global_ex; /**<@brief variable global example, bri
   * </PRE>  
   *********************************************************************************/
 bool_t stdctimer_msleep(uint32_t msec, int *errnotify);
+
+
+#define stdctimer_SLEEP_SEG   0x01    /**<@brief  */
+#define stdctimer_SLEEP_ms    0x02    /**<@brief  */
+#define stdctimer_SLEEP_us    0x03    /**<@brief  */
+#define stdctimer_SLEEP_ns    0x04    /**<@brief  */
+/********************************************************************
+ * @brief funcion que realiza un sleep usando la configuracion de timespec
+ * con alta resoluccion.
+ * @param time      : Tiempo
+ * @param type      : Tipo de base de tiempo 
+ *      \li stdctimer_SLEEP_SEG
+ *      \li stdctimer_SLEEP_ms
+ *      \li stdctimer_SLEEP_us
+ *      \li stdctimer_SLEEP_ns
+ *  'segundos'puntero al buffer del string
+ * @param errnotify :
+ * @return valor del tipo int
+ *********************************************************************/
+bool_t stdctimer_sleepspec(uint32_t time, uint8_t type,int *errnotify);
+
+
+#define stdctimer_sleep(Msec, Errnotify)\
+    stdctimer_sleepspec(Msec,stdctimer_SLEEP_SEG,Errnotify)
+
+#define stdctimer_mssleep(Msec, Errnotify)\
+    stdctimer_sleepspec(Msec,stdctimer_SLEEP_ms,Errnotify)
+
+#define stdctimer_ussleep(Msec, Errnotify)\
+    stdctimer_sleepspec(Msec,stdctimer_SLEEP_us,Errnotify)
+
+#define stdctimer_nssleep(Msec, Errnotify)\
+    stdctimer_sleepspec(Msec,stdctimer_SLEEP_ns,Errnotify)
 /**
   * 
   * ******************************************************************************* 

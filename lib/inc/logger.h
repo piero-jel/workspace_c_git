@@ -33,8 +33,8 @@
 #ifndef __logger_h__
 #define __logger_h__ /**<@brief Definimos el Nombre del modulo */
 
-
-#if ((logger_projectEnable == 1) && defined(SO_LINUX))
+#if (logger_projectEnable == 1 && defined(SO_LINUX))
+// #if (logger_projectEnable == 1)
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 *
@@ -106,6 +106,7 @@ extern "C" {
 #define logger_ERROR      0x02 /**<@brief */
 #define logger_OK         0x03 /**<@brief */
 #define logger_INFO       0x05 /**<@brief */
+#define logger_RAW        0x83 /**<@brief */
 
 #define logger_CURRENT    0x00 /**<@brief */
 
@@ -150,6 +151,7 @@ typedef struct
   FILE * file ; /**<@brief Archivo de logger */
   uint8_t timestamp_fmt;
   char timestamp_sep[4];
+  bool_t close;
 } logger_hdl_t ; 
 
 
@@ -268,6 +270,10 @@ extern unsigned int logger_global_ex; /**<@brief variable global example, brief 
 * \param phdl : Puntero al Handler o vector de Handler.
 * \param len : cantidad de handler
 * \param ... : por cada Hanlder debemos pasar los item String {path,mode}
+*  \li path : ruta donde se creara el log 
+*  \li modo : si pasamos NULL por defecto es "+a", si no existe el archivo lo crea.
+ 
+
 * \return status de la opreacion.
 *      \li 0, success
 *      \li 1, failure
@@ -280,16 +286,51 @@ extern unsigned int logger_global_ex; /**<@brief variable global example, brief 
 * <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
 * \par example :
 <PRE>
+  if(!logger_init(&errnumber,&hdl_logger,1,"/home/username/logname",NULL))
+  {
+    // No se pudo crear el contexto para el logger
+    logger_deinit();
+    PERROR(errnumber, FAILURE,"\tError \"%s\" al intentar crear el contexto de logger\n"\
+      , strerror(errnumber));      
+  } 
+</PRE>  
+*********************************************************************************/
+bool_t logger_init(int *errnum,logger_hdl_t *phdl,size_t len,.../*const char *path, const char * mode*/);
+
+/** 
+* 
+* ******************************************************************************* 
+* \fn FILE * logger_getfile(int *errnum,uint32_t nlogg);
+* \brief Para obtener el Stream File del log.
+* \param errnum : Puntero a l avariable dodne alamcenaremos el erro en caso de que 
+* este ocurra.
+* \param nlogg : Numero del loggfile, dentro de los inicializados. En el caso de 
+* un solo logfile tenemos que pasar '0'.
+* \return Stream File correspondiente, si esta cerrado lo abre.
+*      \li NULL : fallo 
+*      \li !NULL : succes.
+* \version 01v01d01.
+* \note notq.
+* \warning mensaje de "warning". 
+* \date Lunes 08 de Marzo, 2021.
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+* \par meil
+* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+* \par example :
+<PRE>
 
 </PRE>  
 *********************************************************************************/
+FILE * logger_getfile(int *errnum,uint32_t nlogg);
+
 // bool_t logger_init(logger_hdl_t *phdl,size_t len,.../*const char *path, const char * mode*/);
-bool_t logger_init(int *errnum,logger_hdl_t *phdl,size_t len,.../*const char *path, const char * mode*/);
 /**
 * 
 * ******************************************************************************* 
 * \fn bool_t logger_printf(uint32_t nlogg, uint8_t logtype, const char *fmt, ... );
 * \brief 
+* \param errnum : puntero al la variable de error, donde almacenar un errno en caso
+* de que ocurra un error.
 * \param nlogg : numero/id del Log dentro del array con el cual se inicializo la APIs.
 * \param logtype : tipo de log
 *   \li logger_OK
@@ -408,7 +449,12 @@ bool_t logger_debug( int *errnum,uint32_t nlogg, uint8_t logtype \
 #define logger_mprintf(nlogg, logtype, ... ) \
     logger_printf(NULL,nlogg, logtype, __VA_ARGS__)   
 
-
+/* int logger_error(uint32_t nlogg,int errnum,const char *file, const char *funct\
+  , size_t line, const char *fmt, ...) */
+int logger_error(uint32_t nlogg,int errnum,const char *file, const char *funct\
+  , size_t line, const char *fmt, ...);
+#define logger_merror(nlogg, errnum, ... ) \
+    logger_error(nlogg, errnum,__FILE__,__FUNCTION__,__LINE__, __VA_ARGS__) 
  
 /********************************************************************************//**
 * \def LOGGER_INFO_DEBUG(nlogg, logtype, ... )
@@ -737,6 +783,8 @@ extern unsigned int logger_global_ex; /**<@brief variable global example, brief 
 </PRE>  
 *********************************************************************************/
 bool_t logger_init(logger_hdl_t *phdl,const char *path, const char * mode);
+
+
 /**
 * 
 * ******************************************************************************* 

@@ -62,18 +62,23 @@ int main(int argc, char *argv[])
     CPRINTF(RED,"\t Path File Destino vacio\n");
     exit(EXIT_FAILURE);
   }
-
-  
+  int errnum = 0; 
 
 
   linkedlist_t *lista = linkedlist_fillfromfile(argv[1]," \n",NULL);
 
-  linkedlist_print(lista,fn_printstr);
+  if((errnum=linkedlist_print(lista,stdout,fn_printstr)) != 0)
+  {
+    PERROR(errnum,FAILURE,"\tError al imprimir la lista\n");
+  } 
 
   CPRINTF(BLUE,"\n\tOrdenamos la lista\n");
   linkedlist_sort(lista,fn_cmpstr);
   
-  linkedlist_print(lista,fn_printstr);
+  if((errnum=linkedlist_print(lista,stdout,fn_printstr)) != 0)
+  {
+    PERROR(errnum,FAILURE,"\tError al imprimir la lista\n");
+  } 
 
   linkedlist_list2file(lista,argv[2],"\n",fn_getsizestr);
   
@@ -81,7 +86,7 @@ int main(int argc, char *argv[])
   
   
 
-  linkedlist_free(&lista);
+  linkedlist_free(&lista,free);
 
   printf("fin del programa...\n\n");
   exit(EXIT_SUCCESS);

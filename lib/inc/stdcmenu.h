@@ -98,9 +98,7 @@ extern "C"
 │                                                                                       │             
 └───────────────────────────────────────────────────────────────────────────────────────┘
 */
-/* 
-* ======================[ BEGIN Global Macros/labels definition ]=================
-*/
+/* ======================[ BEGIN Global Macros/labels definition ]================= */
 #if (stdcmenu_USE_GlobalMacro == 1)
 
 #define stdcmenu_FLAGS_OPGETED      0x01  /**<@brief */
@@ -116,12 +114,8 @@ extern "C"
 #define stdcmenu_PRINT_FLAGS        0x0040  /**<@brief flags */
 
 #endif /* #if(stdcmenu_USE_GlobalMacro == 1) */
-/* 
-* ======================[ END   Global Macros/labels definition ]=================
-*/
-/* 
-* ======================[ BEGIN Global typedef      ]=============================
-*/
+/* ======================[ END   Global Macros/labels definition ]================= */
+/* ======================[ BEGIN Global typedef      ]============================= */
 #if (stdcmenu_USE_GlobalTypedef == 1)
 
 /**
@@ -184,6 +178,10 @@ typedef struct __stdcmenu_getopt_t
   uint8_t flags; /**<@brief Flags Internos relacionado a item */
   char **argv; /**<@brief array de operandos por argumentos ingresado */
   stdcmenu_uopnum_t argc; /**<@brief numero de operandos por argumentos ingresados*/
+  /** FIXME: deberiamos pasarle el puntero y el index, de esta forma pasamos al callback
+   * el menu completo y el index al cual corresponde el callback, con la finalidad de sacar
+   * mas info. Para ello debemos acompañar con mas APIs para obtener info desde el interior
+   * del callback  */
   void (*callback) (struct __stdcmenu_getopt_t*); /**<@brief funcion de callback
   la cual se invocara cuando se terminen de identificar los operanodos */
   void **rval_callback; /**<@brief Variable donde deseamos guardar el resultado 
@@ -285,25 +283,18 @@ typedef enum
 #endif
 
 #endif /* #if(stdcmenu_USE_GlobalTypedef == 1) */
-/* 
-* ======================[ END   Global typedef      ]=============================
-*/
-/* 
-* =====================[ BEGIN Global variable declaration  ]=====================
-*/
+/* ======================[ END   Global typedef      ]============================= */
+/* =====================[ BEGIN Global variable declaration  ]===================== */
 #if (stdcmenu_USE_GlobalData==1)
 extern unsigned int stdcmenu_global_ex; /**<@brief variable global example, brief of data */
 
 #endif /* #if (stdcmenu_USE_GlobalData==1) */
-/* 
-* =====================[ END   Global variable declaration  ]=====================
-*/ 
-/* 
-* =====================[ BEGIN Global functions declaration ]=====================
-*/
+/* =====================[ END   Global variable declaration  ]===================== */ 
+/* =====================[ BEGIN Global functions declaration ]===================== */
 #if (stdcmenu_USE_GlobalFunctions == 1)
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn bool_t stdcmenu_FillMenuOpts(uint32_t numarg, char **arrarg ,stdcmenu_getopt_t *menuopt, uint32_t valini);
 * \brief Funcion para obtener solo operandos desde un array de argumentos,
 *  como el pasado por comnsola al llamar una aplicacion.
@@ -331,7 +322,8 @@ extern unsigned int stdcmenu_global_ex; /**<@brief variable global example, brie
 bool_t stdcmenu_FillMenuOpts(uint32_t numarg, char **arrarg \
   ,stdcmenu_getopt_t *menuopt, uint32_t valini);
 
-/*******************************************************************************//** 
+/** 
+* ****************************************************************************
 * \fn void stdcmenu_FreeMenuOpts(stdcmenu_getopt_t *menuopt);
 * \brief Funcion para liberar la memoria dinamica usada a la hora de llanar
 * un array del tipo \ref stdcmenu_getopt_t.
@@ -351,9 +343,10 @@ bool_t stdcmenu_FillMenuOpts(uint32_t numarg, char **arrarg \
 *********************************************************************************/
 void stdcmenu_FreeMenuOpts(stdcmenu_getopt_t *menuopt);
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn void stdcmenu_Print(stdcmenu_getopt_t *menu, FILE *stream,uint8_t flags);
-* \brief Funcion para imprimir el contenido una estructura del tipo 
+* \brief Funcion para imprimir el contenido de una estructura del tipo 
 * \ref stdcmenu_getopt_t , con el formato de una meno de opeciones.
 * \param menu : Puntero al array del tipo \ref stdcmenu_getopt_t, el cual
 * representa el menu de opciones.
@@ -382,10 +375,11 @@ void stdcmenu_FreeMenuOpts(stdcmenu_getopt_t *menuopt);
 
 </PRE>  
 *********************************************************************************/
-void stdcmenu_Print(stdcmenu_getopt_t *menu, FILE *stream,uint8_t flags);
+bool_t stdcmenu_Print(stdcmenu_getopt_t *menu, FILE *stream,uint8_t flags);
 
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn void stdcmenu_PrintHelp(stdcmenu_getopt_t *menu,FILE *stream);
 * \brief Funcion para imprimir un mensaje de ayuda en funcion de 
 * los parametros inicializados en un array del tipo \ref stdcmenu_getopt_t .
@@ -410,7 +404,8 @@ void stdcmenu_Print(stdcmenu_getopt_t *menu, FILE *stream,uint8_t flags);
 *********************************************************************************/
 void stdcmenu_PrintHelp(stdcmenu_getopt_t *menu,FILE *stream);
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn void stdcmenu_GetOperandByOptions(const char *Options, stdcmenu_getopt_t *menuopt,stdcmenu_uopnum_t optnum,void *operand );
 * \brief Funcion para obtener un operando, desde un item del array de menu (previamente 
 * llenado), mediante una opcion (String que representa la opcion corta o larga del
@@ -440,7 +435,8 @@ void stdcmenu_PrintHelp(stdcmenu_getopt_t *menu,FILE *stream);
 void stdcmenu_GetOperandByOptions(const char *Options, stdcmenu_getopt_t *menuopt\
   , stdcmenu_uopnum_t optnum,void *operand );
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn void stdcmenu_GetOperandByOptions(const char *Options, stdcmenu_getopt_t *menuopt,stdcmenu_uopnum_t optnum,void *operand );
 * \brief Funcion para obtener un operando, desde un item del array de menu (previamente 
 * llenado), mediante un index (que representa la poscion del item dentro del array). 
@@ -467,7 +463,8 @@ void stdcmenu_GetOperandByOptions(const char *Options, stdcmenu_getopt_t *menuop
 void stdcmenu_GetOperandByIndex(uint32_t index, stdcmenu_getopt_t *menuopt\
   , stdcmenu_uopnum_t optnum, void *operand );
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn void stdcmenu_GetOperand(stdcmenu_getopt_t *pitem, stdcmenu_uopnum_t optnum ,void *operand );
 * \brief Funcion para obtener un operando, desde un item del tipo 
 * \ref stdcmenu_getopt_t . Este es desde el item, no desde un array, utili para 
@@ -519,7 +516,8 @@ void callback_rating(stdcmenu_getopt_t *arg)
 void stdcmenu_GetOperand(stdcmenu_getopt_t *pitem, stdcmenu_uopnum_t optnum \
   ,void *operand );
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn stdcmenu_opnum_t stdcmenu_StatusOperand(stdcmenu_getopt_t *pitem);
 * \brief Funcion para obtener el estado de los operandos esperados para un argumento
 * dado dentro del item perteneciente a un array del tipo menu (\ref stdcmenu_getopt_t).
@@ -543,7 +541,8 @@ void stdcmenu_GetOperand(stdcmenu_getopt_t *pitem, stdcmenu_uopnum_t optnum \
 *********************************************************************************/
 stdcmenu_opnum_t stdcmenu_StatusOperand(stdcmenu_getopt_t *pitem);
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn stdcmenu_opnum_t stdcmenu_StatusOperandByIndex(uint32_t index,stdcmenu_getopt_t *menuopt);
 * \brief Funcion para obtener el estado de los operandos esperados para un argumento
 * dado dentro del item perteneciente a un array del tipo menu (\ref stdcmenu_getopt_t).
@@ -569,7 +568,8 @@ stdcmenu_opnum_t stdcmenu_StatusOperand(stdcmenu_getopt_t *pitem);
 stdcmenu_opnum_t stdcmenu_StatusOperandByIndex(uint32_t index \
   , stdcmenu_getopt_t *menuopt);
 
-/*******************************************************************************//** 
+/**
+* ****************************************************************************** 
 * \fn stdcmenu_opnum_t stdcmenu_StatusOperandByOptions(const char *Options,stdcmenu_getopt_t *menuopt);
 * \brief Funcion para obtener el estado de los operandos esperados para un argumento
 * dado dentro del item perteneciente a un array del tipo menu (\ref stdcmenu_getopt_t).
@@ -597,16 +597,13 @@ stdcmenu_opnum_t stdcmenu_StatusOperandByOptions(const char *Options \
   , stdcmenu_getopt_t *menuopt);
 
 #endif /* #if (stdcmenu_USE_GlobalFunctions == 1) */
-/* 
-* =====================[ END   Global functions declaration ]=====================
-*/
-/* 
-* ======================[ BEGIN Global Macros functions ]=========================
-*/
+/* =====================[ END   Global functions declaration ]===================== */
+/* ======================[ BEGIN Global Macros functions ]========================= */
 #if ( stdcmenu_USE_GlobalMacroApis == 1 )
 
 
-/********************************************************************************//**
+/**
+* *******************************************************************************
 * \def stdcmenu_DPERROR(...)
 * \brief Macro funcion para imprimir un mensaje de error solo si DEBUG_ENABLE esta 
 * habilitado. Podemos redefinir esta funcion a un log de eventos en caso de ser 

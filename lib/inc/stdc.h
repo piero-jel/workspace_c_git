@@ -52,6 +52,16 @@ extern "C"
 /* 
   * ======================[ BEGIN include header file ]=================================
   */
+
+/* Definimos los label para habilitar el uso de GNU para todos los header files */
+#if !defined(__USE_GNU)
+  #define __USE_GNU    
+#endif
+
+#if !defined(_GNU_SOURCE)
+  #define _GNU_SOURCE
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <error.h>
@@ -69,13 +79,16 @@ extern "C"
 #include <version.h>
 #include <stdctype.h>
 #include <stdcstr.h>
+/* FIXME news modules, componentes de stdc_ */
 #include <stdc_print.h>
+#include <stdc_str.h>
+
 #include <stdctimer.h>
 #include <stdcfile.h>
 /* en etapa de test 01d00v00*/
 #include <stdcmenu.h>
 #include <timestamp.h>
-
+#include <stdcutils.h>
 /*fuera del estandar*/
 #include <logger.h>
 
@@ -112,9 +125,7 @@ extern "C"
 #define __stdc_version__        version_SetNumber(01v00d00)
 #endif
 
-/* 
-  * ======================[ END   labels enable/disable ]===============================
-  */
+/* ======================[ END   labels enable/disable ]=============================== */
 #if (version_QueryNumber(__stdc_version__,01v00d00))
 /* 
   * ┌───────────────────────────────────────────────────────────────────────────────────────┐           
@@ -125,9 +136,7 @@ extern "C"
   * │                                                                                       │             
   * └───────────────────────────────────────────────────────────────────────────────────────┘
   */
-/* 
-  * ======================[ BEGIN Global Macros/labels definition ]=================
-  */
+/* ======================[ BEGIN Global Macros/labels definition ]================= */
 #if (stdc_USE_GlobalMacro == 1)
 
 
@@ -135,9 +144,7 @@ extern "C"
 /* 
   * ======================[ END   Global Macros/labels definition ]=================
   */
-/* 
-  * ======================[ BEGIN Global typedef      ]=============================
-  */
+/* ======================[ BEGIN Global typedef      ]============================= */
 #if (stdc_USE_GlobalTypedef == 1)
 
 /**
@@ -232,22 +239,111 @@ typedef enum
 } stdc_enum_eT;
 
 #endif /* #if(stdc_USE_GlobalTypedef == 1) */
-/* 
-  * ======================[ END   Global typedef      ]=============================
-  */
+/* ======================[ END   Global typedef      ]============================= */
 
 
-/* 
-  * ======================[ BEGIN Global Macros functions ]=========================
-  */
+/* ======================[ BEGIN Global Macros functions ]========================= */
 #if ( stdc_USE_GlobalMacroApis == 1 )
-    
-    
+/**
+ * \def ARRAY_SIZE(Arr)
+ * \brief Macro funcion para obtener el numero de item de un array,
+ * no el numero de bytes.
+ * \param Arr   : Array sobre el cual se desea obtener el numero de Items.
+ * \return El numero de item de un array de elementos. */
+#define ARRAY_SIZE(Arr)     (sizeof(Arr)/sizeof(Arr[0]))     
+
+/** 
+ * \def ARRAY_PRINT(Buff,Fmt)
+ * \brief Macro funcion para imprimir un array de valores primitivos.
+ * \param Buff    Buffer de valores del tipo primitivo.
+ * \param Fmt     Formato, se debe corresponde al tipo de datos del array. 
+ * \return nothing 
+ */
+#define ARRAY_PRINT(Buff,Fmt) \
+{\
+  size_t i ;\
+  for(i=0;i<ARRAY_SIZE(Buff);i++)\
+    printf("\t"Fmt"\n",Buff[i]);\
+}
+
+
+
+/**
+ * 
+*/
+#define RETURN_STATE_NONE(rValue,pState,rState) \
+{\
+  if(pState != NULL) \
+    *pState = rState; \
+  return rValue;\
+}  
+
+#define RETURN_STATE_SUCCESS(Value,pState) \
+{\
+  if(pState != NULL) \
+    *pState = TRUE; \
+  return Value; \
+}
+
+#define RETURN_STATE_FAILURE(Value,pState) \
+{\
+  if(pState != NULL) \
+    *pState = FALSE; \
+  return Value;\
+}
+
+#define RETURN_STATE_TRUE(pState) \
+{\
+  if(pState != NULL) \
+    *pState = TRUE; \
+  return TRUE;\
+}
+#define RETURN_STATE_FALSE(pState) \
+{\
+  if(pState != NULL) \
+    *pState = FALSE; \
+  return FALSE;\
+}
+
+#define RETURN_STATE_NULL(pState,rState) \
+{\
+  if(pState != NULL) \
+    *pState = rState; \
+  return NULL;\
+} 
+
+/** 
+* \def RETURN_STATE(Type,...)
+* \brief Macro funcion para retornar un State desde una funcion y marcar un flag si este es
+* valido (distinto de NULL).
+* \param Type : Tipo de salida, esta puede ser:
+    \param[in] SUCCESS : RETURN_STATE(SUCCESS,rValue,pState) => pState = TRUE, return rValue;
+    \param[in] FAILURE : RETURN_STATE(FAILURE,rValue,pState) => pState = FALSE, return rValue;
+    \param[in] NONE    : RETURN_STATE(NONE,rValue,pState,rState) => pState = rState, return rValue;
+    \param[in] TRUE    : RETURN_STATE(TRUE,pState) => pState = TRUE, return TRUE;
+    \param[in] FALSE   : RETURN_STATE(FALSE,pState) => pState = FALSE, return FALSE; 
+    \param[in] NULL    : RETURN_STATE(NULL,pState,rState) => pState = rState, return NULL;
+* \param ... : Listado de Argumentos, String con formato seguido de cada argumento .
+* \return rValue
+* \version AAvBBdCC.
+* \note nota.
+* \warning mensaje de "warning".
+* \date date dayOfMonth de month, years.
+* \author <b> JEL </b> - <i> Jesus Emanuel Luccioni </i>.
+* \par meil
+* <PRE> + <b><i> piero.jel@gmail.com </i></b></PRE>
+* \par example :
+<PRE>
+
+
+</PRE> 
+*/
+#define RETURN_STATE(Type,...) \
+  RETURN_STATE_##Type(__VA_ARGS__)
+  
     
 #endif /* #if ( stdc_USE_GlobalMacroApis == 1 ) */
-/* 
-  * ======================[ END   Global Macros functions ]=========================
-  */
+/* ======================[ END   Global Macros functions ]========================= */
 /*
   * ┌───────────────────────────────────────────────────────────────────────────────────────┐           
   * │                                                                                       │  
