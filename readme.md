@@ -68,7 +68,7 @@ To run this app, you will need to follow these 3 steps:
 
 #### 2. Install cross compiler
   
-  - [Linux] ARM-Platform
+  - [Linux](https://platformio.org/platforms/linux_arm) ARM-Platform
   ~~~
     sudo apt install crossbuild-essential-armhf
     sudo apt install crossbuild-essential-arm64
@@ -89,7 +89,7 @@ To run this app, you will need to follow these 3 steps:
     sudo apt-get install mingw-w64
   ~~~
   
-  - [Windows](https://www.cygwin.com/setup-x86_64.exe) CyG Win installs.
+  - [Windows - CyG Win](https://www.cygwin.com/setup-x86_64.exe) installers.
   
   
 #### 3. Local Setup and Running on Windows, Linux and Mac OS
