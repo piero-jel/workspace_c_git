@@ -18,6 +18,11 @@
   PROJECT = projects/terminal/serial_terminal
   ~~~
   
+  1. [here](./projects/iso8583/msg_ebcdic_01/readme.md) msg_ebcdic_01 , Expansion de los campos de una Trx en formato String EBCDIC, segun norma ISO8583.
+  ~~~
+    PROJECT = projects/iso8583/msg_ebcdic_01
+  ~~~
+  
   
   
 ## Estableciendo el nombre del Ejecutable

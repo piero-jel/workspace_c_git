@@ -28,7 +28,7 @@ main_version = $(ver_01v0d0)
 
 ##
 # DEBUG_ENABLE ?= ENABLE
-DEBUG_ENABLE ?= ENABLE
+# DEBUG_ENABLE ?= ENABLE
 ##
 ##
 #####################################################################################
