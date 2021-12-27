@@ -89,6 +89,7 @@ To run this app, you will need to follow these 3 steps:
   ~~~
   
     * others tools:
+    
   ~~~
     sudo apt-get install -y build-essential
     sudo apt-get install -y libc6-armhf-cross
