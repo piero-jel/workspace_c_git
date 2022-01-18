@@ -1,5 +1,5 @@
 ## Instalaccion Linux:
-Copiar el contenido de este directorion en una ubicacion especifica, recomndacion crear un directorio 'install' bajo el directotio '/home/<User>/', y en este ultimo copiar completamente este directorio.
+Copiar el contenido de este directorion en una ubicacion especifica, recomndacion crear un directorio 'install' bajo el directotio **/home/User/**, y en este ultimo copiar completamente este directorio.
 
 
 ### Crear un lanzador el cual contenga la siguente estructura (enlazando el archivo 'run.sh'):

@@ -1,1 +1,44 @@
 7/10/2021 16:45:57 - run app 
+17/1/2022 21:2:6 - run app 
+17/1/2022 21:2:30 - run app 
+17/1/2022 21:2:44 - message to parsing F0F2F0F0F2BA67C128E0D0180000000000000000F1F6F4F7F6F1F3F4F0F0F0F0F0F0F0F0F7F6F0F1F1F0F0F0F0F0F0F0F0F0F0F0F1F0F0F0F0F9F2F4F1F0F1F5F3F6F6F1F0F0F0F0F0F0F0F0F3F4F5F3F1F0F1F5F3F6F0F9F2F4F0F9F2F4F6F0F1F1F0F6F8F8F0F1404040D9D6C6F0F0F1F2F0F6F5F2F1F0F6F7F3F2F4F7F6F1F3F4F0F0F0F0F0F0F0F0F7F67EF2F2F1F2F2F2F1F1F4F5F8F8F9F7F2F0F0F0F0F0F0F0F0F3F4F5F3E2E3D5C3D9F0F2F0F5F8F9F3F5F8F0F0404040F0F0F0F0D9D7C5D5C9C14040404040404040404040404040404040C2C140404040404040404040404040C2D6F0F6F8F0F6F8F8F0F2F1C6F1F6F1F2C2C3C2C5C5C5F7F0F1F0F0
+ 
+FRAME: [0200F2BA67C128E0D0180000000000000000164761340000000076011000000000001000092410153661000000003453101536092409246011068801   ROF001206521067324761340000000076=221222114588972000000003453STNCR02058935800   0000RPENIA                 BA             BO0680688021F1612BCBEEE70100]
+
+------------------------------------------------------------------------------------------------------------------------------
+  MTID |   BIT MAP 1         |   BIT MAP 2         |  Cant Campos |  Status |  Last Field 
+------------------------------------------------------------------------------------------------------------------------------
+  0200 | 0xF2BA67C128E0D018  | 0x0000000000000000  |     28       |  0x0083 | [ 26] : 060 
+
+------------------------------------------------------------------------------------------------------------------------------
+  idx | Type | Len |                              Brief | Contenido del campo 
+------------------------------------------------------------------------------------------------------------------------------
+[001] | b    | 016 |                          Bit Map 2 | [0000000000000000] 
+[002] | n    | 016 |                                PAN | [4761340000000076] 
+[003] | n    | 006 |                    Processing code | [011000] 
+[004] | n    | 012 |                Amount, transaction | [000000001000] 
+[007] | n    | 010 |                    Trx date & time | [0924101536] 
+[009] | n    | 008 |        Conversion rate, Settlement | [61000000] 
+[011] | n    | 006 |         Systems trace audit number | [003453] 
+[012] | n    | 006 |            Time, Local transaction | [101536] 
+[013] | n    | 004 |      Date, Local transaction MM-DD | [0924] 
+[015] | n    | 004 |                   Date, Settlement | [0924] 
+[018] | n    | 004 |                      Merchant type | [6011] 
+[019] | n    | 003 |       Acquiring Inst. Country code | [068] 
+[022] | n    | 003 |        Point of service entry mode | [801] 
+[023] | n    | 003 |             Application PAN number | [   ] 
+[024] | n    | 003 |   Network International identifier | [ROF] 
+[025] | n    | 002 |    Point of service condition code | [00] 
+[026] | n    | 002 |      Point of service capture code | [12] 
+[032] | n    | 006 |            Acquiring Inst. ID code | [521067] 
+[035] | z    | 032 |                       Track 2 data | [4761340000000076=221222114588972] 
+[037] | an   | 012 |         Retrieval reference number | [000000003453] 
+[041] | ans  | 008 |          Card acceptor terminal ID | [STNCR020] 
+[042] | ans  | 015 |              Card acceptor ID code | [58935800   0000] 
+[043] | ans  | 040 |        Card acceptor name/location | [RPENIA                 BA             BO] 
+[049] | a    | 003 |         Currency code, transaction | [068] 
+[050] | an   | 003 |          Currency code, settlement | [068] 
+[052] | b    | 016 |            Personal ID number data | [8021F1612BCBEEE7] 
+[060] | an   | 001 |                 Advice/reason code | [0] 
+[061] | ans  | NNN |                   Reserved Private | [Warning, faltan Caracteres p/Obtener la longitud del Campo.] 
+

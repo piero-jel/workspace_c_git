@@ -17,7 +17,7 @@ PROJECT = projects/templates/template
 ~~~
 PROJECT = projects/terminal/serial_terminal
 ~~~
-  
+### Proyectos disponibles:  
 1. iso8583 [msg_ebcdic_01](./projects/iso8583/msg_ebcdic_01/readme.md)
   ~~~
   PROJECT = projects/iso8583/msg_ebcdic_01
